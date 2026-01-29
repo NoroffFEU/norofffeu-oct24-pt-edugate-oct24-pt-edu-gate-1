@@ -17,16 +17,46 @@ header {
 	border: var(--color-neutral-medium-gray);
 	border-style: inset;
 	border-width: 0.5px;
-	
+	background: var(--color-neutral-gray); 
+	background-image: url("../public/img/logo-header-cropped.png");
+	background-position: left;
+	background-repeat: no-repeat;
+	height: 7%;
 	position: sticky;
 	top: 0;
 	z-index: 9; 
-	background: var(--color-neutral-gray);
+	
+}
+.hamburger-menu {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+
+/*Dashboard*/
+.dashboard{
+	text-align: center;
+}
+
+.icon-wrapper img{
+	height: 32px;
+	width: 32px;
+}
+.icon-wrapper div{
+	padding: 5%;
+}
+
+.icon-wrapper p{
+	margin-top: 0;
 }
 
 /* Footer */
 
 footer {
+	background-image: url("../public/img/Circles_illustration_mobile.png");
+	background-position: right;
+	background-repeat: no-repeat;
+	max-height: 350px;
 	display: flex;
 	flex-direction: row;
 	height: 100%;
