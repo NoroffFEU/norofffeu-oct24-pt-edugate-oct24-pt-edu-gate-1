@@ -3,6 +3,8 @@ export default function Home() {
     <div>
         <h1>Home</h1>
         <nav>
+        <a href="/test" data-link>Go to Test Page</>
+        <br>
             <a href="/login" data-link>Go to login</a>
             <br><br>
             <a href="/non-existent-page" data-link>Go to 404 Page</a>
