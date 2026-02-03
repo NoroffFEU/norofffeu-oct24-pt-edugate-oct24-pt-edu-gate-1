@@ -1,0 +1,56 @@
+.sidebar {
+  position: fixed;
+  top: 10%;
+  left: 0;
+  width: 100vw;
+  height: 90vh;
+  background-color: var(--color-neutral-gray);
+  z-index: 1000;
+  transition: width 0.3s, transform 0.3s;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+.toggle-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;             
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: left 0.3s;   
+}
+
+
+.sidebar:not(.collapsed) .toggle-btn {
+  left: 320px;          
+}
+
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin-top: 60px;
+}
+
+.menu li {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  cursor: pointer;
+}
+
+.menu img {
+  width: 24px;
+  height: 24px;
+}
+
+.menu p {
+  margin-left: 15px;
+}
+
+.sidebar.collapsed .menu p {
+  display: none;
+}
+

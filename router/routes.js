@@ -1,12 +1,12 @@
 // views
 import Home from '../pages/home.js'
 import Test from '../pages/test.js'
-import Dashboard from '../pages/dashboard.js';
+import teacherDashboard, {initTeacherDashboard} from '../pages/teacherDashboard.js';
 
 const routes = [
     { path: "/", view: Home },
     { path: "/test", view: Test },
-    { path: "/dashboard", view: Dashboard},
+    { path: "/dashboard", view: teacherDashboard, init: initTeacherDashboard},
 ];
 
 export default routes;
