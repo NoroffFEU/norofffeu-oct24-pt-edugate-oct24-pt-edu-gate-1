@@ -6,11 +6,13 @@
   height: 90vh;
   background-color: var(--color-neutral-gray);
   z-index: 1000;
-  transition: width 0.3s, transform 0.3s;
+  
 }
+
 
 .sidebar.collapsed {
   width: 80px;
+  height: 50vh;
 }
 .toggle-btn {
   position: absolute;
@@ -20,11 +22,6 @@
   height: 24px;
   cursor: pointer;
   transition: left 0.3s;   
-}
-
-
-.sidebar:not(.collapsed) .toggle-btn {
-  left: 320px;          
 }
 
 
@@ -39,18 +36,40 @@
   align-items: center;
   padding: 15px 20px;
   cursor: pointer;
+  min-height: 50px;
 }
 
 .menu img {
   width: 24px;
   height: 24px;
+  display: none;
+ 
 }
 
 .menu p {
   margin-left: 15px;
 }
 
-.sidebar.collapsed .menu p {
+.sidebar.collapsed .menu p  {
   display: none;
+}
+.sidebar:not(.collapsed) .toggle-btn {
+  left: 320px;    
+}
+.sidebar:not(.collapsed) .menu img{
+  display: block;
+}
+
+@media  (min-width: 750px) {
+
+  .menu img {
+    display:block;
+  }
+}
+@media  (min-width: 1000px) {
+  .sidebar{
+    width: 30vw;
+    height: 70vh;
+  }
 }
 

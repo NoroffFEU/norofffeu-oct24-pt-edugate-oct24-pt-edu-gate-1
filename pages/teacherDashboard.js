@@ -36,6 +36,10 @@ export default function teacherDashboard(){
             <p>Top students</p>
           </div>
           <div>
+            <img src="../public/icons/user-circle.png">
+            <p>See profile</p>
+          </div>         
+          <div>
             <img src="../public/icons/logout.png">
             <p>Log out</p>
           </div>
@@ -55,7 +59,7 @@ export function initTeacherDashboard() {
   console.log("avatarRoot", avatarRoot);
   
   sidebarRoot.appendChild(Sidebar(loggedInUser.role));
-  
+
   const avatar = document.createElement("div");
   avatar.className = "avatar";
   avatar.textContent = getInitials(loggedInUser.name);

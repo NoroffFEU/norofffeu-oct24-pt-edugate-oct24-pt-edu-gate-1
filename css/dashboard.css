@@ -3,17 +3,28 @@
 	text-align: center;
 }
 
+.icon-wrapper{
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 20px;
+    justify-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
 .icon-wrapper img{
 	height: 32px;
 	width: 32px;
+    margin-bottom: 10px;
 }
 .icon-wrapper div{
-	padding: 5%;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
 }
 
-.icon-wrapper p{
-	margin-top: 0;
-}
 .profile-dash-info {
   display: flex;
   flex-direction: column;
@@ -35,4 +46,22 @@
     font-weight: bold;
     font-size: 36px;
     letter-spacing: 1px;
+}
+
+@media  (min-width: 750px) {
+    
+  .icon-wrapper img{
+        height: 96px;
+        width: 96px;
+    }
+    .icon-wrapper {
+        grid-template-columns: repeat(3, 100px); 
+        justify-content: center;  
+        gap: 50px;
+    }
+    .icon-wrapper > div:nth-last-child(1),
+    .icon-wrapper > div:nth-last-child(2) {
+        margin-left: 140px;
+    }
+ 
 }

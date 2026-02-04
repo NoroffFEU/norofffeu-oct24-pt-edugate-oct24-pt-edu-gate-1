@@ -33,17 +33,50 @@ header {
 	top: 20px;
 
 }
+header ul{
+	display: none;
+	
+}
+header li{
+	margin-left: 100px;
+	font-size: larger;
+}
+header .active{
+	text-decoration: underline;
+	text-decoration-color: var(--primary-color);
+	text-decoration-thickness: 2px;
+	
 
+}
 
 
 /* Footer */
 
 footer {
 	background-image: url("../public/img/Circles_illustration_mobile.png");
-	background-position: right;
+	background-position: right bottom;
 	background-repeat: no-repeat;
-	max-height: 350px;
+	background-size: contain;
+	max-height: 250px;
 	display: flex;
 	flex-direction: row;
 	height: 100%;
+}
+
+@media  (min-width: 750px) {
+	header ul{
+		display: block;
+		list-style-type: none;
+		display: flex;
+		flex-direction: row;
+		position: absolute;
+		right: 10%;
+	}
+	footer {
+		background-image: url("../public/img/circle-footer.png");
+		background-position: center bottom;
+	}
+	.hamburger-menu{
+		display: none;
+	}
 }
