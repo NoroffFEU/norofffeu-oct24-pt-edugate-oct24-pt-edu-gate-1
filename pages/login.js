@@ -12,7 +12,7 @@ export default function Login() {
       ) {
         window.location.href = "/dashboard";
       } else {
-        alert("Unsuccesful verification. Wrong email or password");
+        document.getElementById("login-error").classList.remove("hidden");
       }
     });
   }, 0);
@@ -20,6 +20,9 @@ export default function Login() {
   return /* HTML */ `
     <section class="login">
       <div class="login-card">
+        <div id="login-error" class="login-error hidden">
+          Failed Sign Up! Wrong password or email address!
+        </div>
         <h1>Log in</h1>
 
         <form id="login-form">
