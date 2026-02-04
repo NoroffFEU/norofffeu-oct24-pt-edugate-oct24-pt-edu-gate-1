@@ -28,7 +28,7 @@ export default function Login() {
             type="email"
             id="email"
             name="email"
-            placeholder="xxxx@mail.com"
+            placeholder="example@mail.com"
             required
           />
 
