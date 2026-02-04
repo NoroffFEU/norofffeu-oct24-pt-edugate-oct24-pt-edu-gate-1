@@ -34,22 +34,7 @@ header {
 
 }
 
-/*Dashboard*/
-.dashboard{
-	text-align: center;
-}
 
-.icon-wrapper img{
-	height: 32px;
-	width: 32px;
-}
-.icon-wrapper div{
-	padding: 5%;
-}
-
-.icon-wrapper p{
-	margin-top: 0;
-}
 
 /* Footer */
 

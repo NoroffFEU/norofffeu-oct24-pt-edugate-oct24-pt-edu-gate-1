@@ -1,19 +1,25 @@
 import Sidebar from "../components/sidebar.js";
+import { getInitials } from "../src/utils.js";
 
+const loggedInUser ={
+  name: "Joe Bloggs",
+  role: "teacher"
+};
 
 export default function teacherDashboard(){
+
     return /*HTML*/ `
 
     <div class="layout">
-      <div class="sidebar-root"></div>
+      <div id="sidebar-root"></div>
 
       <div class="dashboard">
         <h1>Dashboard</h1>
 
         <div class="profile-dash-info">
-          <img src="../public/icons/Student-initials.png">
-          <h2>Joe Bloggs</h2>
-          <p>Teacher at Edugate school</p>
+         <div id="avatar-root"></div>
+         <h2>${loggedInUser.name}</h2>
+         <p>${loggedInUser.role} at Edugate school</p>
         </div>
 
         <div class="icon-wrapper">
@@ -41,6 +47,18 @@ export default function teacherDashboard(){
  
 }
 export function initTeacherDashboard() {
-  const sidebarRoot = document.querySelector(".sidebar-root");
-  sidebarRoot.appendChild(Sidebar("teacher"));
+  console.log("INIT DASHBOARD");
+
+  const sidebarRoot = document.getElementById("sidebar-root");
+  const avatarRoot = document.getElementById("avatar-root");
+
+  console.log("avatarRoot", avatarRoot);
+  
+  sidebarRoot.appendChild(Sidebar(loggedInUser.role));
+  
+  const avatar = document.createElement("div");
+  avatar.className = "avatar";
+  avatar.textContent = getInitials(loggedInUser.name);
+
+  avatarRoot.appendChild(avatar)
 }

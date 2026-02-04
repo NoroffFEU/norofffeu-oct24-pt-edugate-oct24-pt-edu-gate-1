@@ -16,7 +16,7 @@
   position: absolute;
   top: 20px;
   left: 20px;             
-  width: 24px;
+  width: auto;
   height: 24px;
   cursor: pointer;
   transition: left 0.3s;   
