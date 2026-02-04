@@ -41,6 +41,10 @@ export default function Login() {
             required
           />
 
+          <p class="forgot-password">
+            Forgot your password? Click <span>here</span>
+          </p>
+
           <button id="login-btn" type="button">Submit</button>
         </form>
       </div>
