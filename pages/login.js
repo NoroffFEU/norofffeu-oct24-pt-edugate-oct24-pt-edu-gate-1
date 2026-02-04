@@ -17,31 +17,33 @@ export default function Login() {
     });
   }, 0);
 
-  return /*HTML*/ `
+  return /* HTML */ `
     <section class="login">
-  <div class="login-card">
-  <h1>Log in</h1>
+      <div class="login-card">
+        <h1>Log in</h1>
 
-  <form id="login-form">
-    <label for="email">Email</label>
-    <input type="email" 
-    id="email" 
-    name="email"
-    placeholder="xxxx@mail.com" 
-    required />
+        <form id="login-form">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="xxxx@mail.com"
+            required
+          />
 
-    <label for="password">Password</label>
-    <input
-      type="password"
-      id="password"
-      name="password"
-      placeholder="Enter password"
-      required
-    />
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+            required
+          />
 
-    <button id="login-btn" type="button">Submit</button>
-  </form>
-  </div>
-  </section>
-    `;
+          <button id="login-btn" type="button">Submit</button>
+        </form>
+      </div>
+    </section>
+  `;
 }
