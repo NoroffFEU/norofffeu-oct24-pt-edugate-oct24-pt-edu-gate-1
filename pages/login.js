@@ -1,6 +1,7 @@
 export default function Login() {
   setTimeout(() => {
     const button = document.querySelector("#login-btn");
+    const closeBtn = document.querySelector(".close-error");
 
     button.addEventListener("click", function () {
       const emailInput = document.querySelector("#email");
@@ -15,22 +16,28 @@ export default function Login() {
         document.getElementById("login-error").classList.remove("hidden");
       }
     });
+
+    closeBtn.addEventListener("click", () => {
+      document.getElementById("login-error").classList.add("hidden");
+    });
   }, 0);
 
   return /* HTML */ `
     <section class="login">
-      <div class="login-card">
-        <div id="login-error" class="login-error hidden">
-          <img src="public/icons/fail.png" class="error-icon" />
-
-          <div class="error-text">
-            <p class="error-title">Failed Sign Up!</p>
-            <p class="error-text">Wrong password or email address!</p>
-          </div>
-
-          <img src="public/icons/x-red.png" class="close-error" />
+      <div id="login-error" class="login-error hidden">
+        <div class="error-icon">
+          <img src="public/icons/fail.png" />
         </div>
 
+        <div>
+          <p class="error-title">Failed Sign Up!</p>
+          <p class="error-text">Wrong password or email address!</p>
+        </div>
+
+        <img src="public/icons/x-red.png" class="close-error" />
+      </div>
+
+      <div class="login-card">
         <h1>Log in</h1>
 
         <form id="login-form">

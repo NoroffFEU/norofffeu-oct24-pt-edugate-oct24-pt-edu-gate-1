@@ -2,7 +2,7 @@
 
 .login {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   padding: 60px 16px;
 }
 
@@ -18,6 +18,7 @@
   display: flex;
   flex-direction: column;
   gap: 48px;
+  margin: 0 auto;
 }
 
 .login-card h1 {
@@ -88,18 +89,57 @@
   font-weight: 700;
 }
 
+/* Alert failed verification */
 .login-error {
-  background: #ffe9e9;
-  color: #c62828;
-  padding: 16px;
-  margin-bottom: 24px;
+  display: flex;
+  align-self: flex-end;
+  gap: 32px;
 
-  border-left: 6px solid #c62828;
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-size: 18px;
+  width: 450px;
+  height: 167px;
+  padding: 16px;
+
+  background: #fdecea;
+  border-radius: 6px;
 
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.error-icon {
+  width: 80px;
+}
+
+.error.icon img {
+  width: 100%;
+  height: auto;
+}
+
+.login-error > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.error-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: #c62828;
+  margin: 0;
+}
+
+.error-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: #c62828;
+  margin: 0;
+}
+
+.close-error {
+  margin-right: auto;
+  align-self: flex-start;
+  width: 16px;
+  cursor: pointer;
 }
 
 .hidden {
@@ -123,5 +163,27 @@
   #login-form button {
     font-weight: 600;
     padding: 10px 20px;
+  }
+
+  .login-error {
+    width: 100%;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .error-icon {
+    width: 48px;
+  }
+
+  .error-title {
+    font-size: 20px;
+  }
+
+  .error-text {
+    font-size: 16px;
+  }
+
+  .close-error {
+    width: 12px;
   }
 }
