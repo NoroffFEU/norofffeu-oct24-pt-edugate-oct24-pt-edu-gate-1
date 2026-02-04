@@ -21,8 +21,16 @@ export default function Login() {
     <section class="login">
       <div class="login-card">
         <div id="login-error" class="login-error hidden">
-          Failed Sign Up! Wrong password or email address!
+          <img src="public/icons/fail.png" class="error-icon" />
+
+          <div class="error-text">
+            <p class="error-title">Failed Sign Up!</p>
+            <p class="error-text">Wrong password or email address!</p>
+          </div>
+
+          <img src="public/icons/x-red.png" class="close-error" />
         </div>
+
         <h1>Log in</h1>
 
         <form id="login-form">
