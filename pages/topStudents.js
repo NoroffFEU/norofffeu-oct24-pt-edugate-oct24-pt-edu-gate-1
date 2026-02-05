@@ -1,0 +1,1 @@
+export default () => `<h1> Top students Coming soom</h1>`

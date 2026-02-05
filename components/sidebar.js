@@ -1,3 +1,6 @@
+import { logout } from "../src/auth.js";
+import { handleLogout } from "../src/utils.js";
+
 export default function Sidebar(role){
     const sidebar = document.createElement("aside");
     sidebar.className ="sidebar collapsed";
@@ -7,11 +10,32 @@ export default function Sidebar(role){
     toggleBtn.src = "../public/icons/green-double-arrows-right.png";
     toggleBtn.alt = "Toggle sidebar";
 
+    sidebar.addEventListener("mouseenter", () =>{
+        if(!sidebar.classList.contains("pinned")){
+            sidebar.classList.add("expanded");
+            sidebar.classList.remove("collapsed");
+        }
+    });
+
+    sidebar.addEventListener("mouseleave", () =>{
+        if(!sidebar.classList.contains("pinned")){
+            sidebar.classList.add("collapsed");
+            sidebar.classList.remove("expanded");
+        }
+    })
+
     toggleBtn.addEventListener("click", () => {
-        const isCollapsed = sidebar.classList.toggle("collapsed");
-        toggleBtn.src = isCollapsed
-            ? "../public/icons/green-double-arrows-right.png"
-            : "../public/icons/green-x.png";
+       const isPinned = sidebar.classList.toggle("pinned");
+
+        if (isPinned) {
+            sidebar.classList.add("expanded");
+            sidebar.classList.remove("collapsed");
+            toggleBtn.src = "../public/icons/green-x.png";
+        } else {
+            sidebar.classList.add("collapsed");
+            sidebar.classList.remove("expanded");
+            toggleBtn.src = "../public/icons/green-double-arrows-right.png";
+        }
     });
 
     const menu = document.createElement("ul");
@@ -19,11 +43,11 @@ export default function Sidebar(role){
 
     const menuConfig = {
         teacher: [
-            { icon: "dashboard.png", text: "Home"},
-            { icon: "results.png", text: "Results management"},
-            { icon: "user-management.png", text: "User management"},
-            { icon: "top-students.png", text: "Top students"},
-            { icon: "logout.png", text: "Logout"},
+            { icon: "dashboard.png", text: "Home", path: "/"},
+            { icon: "results.png", text: "Results management", path: "/result-management"},
+            { icon: "user-management.png", text: "User management", path: "/user-management"},
+            { icon: "top-students.png", text: "Top students", path: "/top-students"},
+            { icon: "logout.png", text: "Logout", path: "/logout"},
 
         ], 
         studens: [
@@ -42,6 +66,11 @@ export default function Sidebar(role){
     };
 
     menuConfig[role].forEach(item => {
+        const link = document.createElement("a");
+        link.href = item.path;
+        link.dataset.link = "";
+        link.className = "menu-link";
+
         const li = document.createElement("li");
         
         const img = document.createElement("img");
@@ -52,8 +81,21 @@ export default function Sidebar(role){
         label.textContent = item.text;
 
         li.append(img, label);
-        menu.appendChild(li);
+        link.appendChild(li)
+        menu.appendChild(link);
     });
+
+    menu.addEventListener("click", (e) => {
+        const logoutLink = e.target.closest("a[href='/logout']");
+        if(!logoutLink) return;
+
+        e.preventDefault();
+        logout();
+
+        handleLogout();
+
+
+    })
 
     sidebar.append(toggleBtn, menu);
     return sidebar;

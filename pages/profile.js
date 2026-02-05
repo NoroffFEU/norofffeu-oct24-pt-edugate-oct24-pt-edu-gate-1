@@ -1,0 +1,1 @@
+export default () => `<h1>Profile Coming soom</h1>`

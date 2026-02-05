@@ -1,4 +1,5 @@
 import routes from "./routes.js";
+import { isLoggedIn } from "../src/auth.js";
 
 const NotFound = () => /*HTML*/`
 <div>
@@ -16,9 +17,15 @@ function router() {
     }
     if (path.endsWith("index.html") || path === "/templates/") path = "/";
 
+
+        if (!isLoggedIn() && path !== "/login") {
+        history.replaceState(null, null, "/login");
+        path = "/login";
+    }
     const route = routes.find(r => r.path === path);
     const view = route ? route.view : NotFound;
     document.querySelector("#app").innerHTML = view();
+    
 
     if(route && route.init){
         route.init();

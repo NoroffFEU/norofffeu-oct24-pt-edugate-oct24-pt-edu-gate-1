@@ -8,6 +8,9 @@
   z-index: 1000;
   
 }
+  .sidebare.expanded{
+    width: 30vw;
+  }
 
 
 .sidebar.collapsed {
@@ -30,6 +33,19 @@
   padding: 0;
   margin-top: 60px;
 }
+.menu-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.menu li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
 
 .menu li {
   display: flex;
@@ -70,6 +86,9 @@
   .sidebar{
     width: 30vw;
     height: 70vh;
+  }
+  .sidebare.expanded{
+    width: 30vw;
   }
 }
 

@@ -31,6 +31,15 @@
   align-items: center;
   gap: 0.75rem;
 }
+.icon-item {
+  text-decoration: none;
+  color: inherit;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
 
 /*avatar*/
 .avatar{
@@ -55,13 +64,25 @@
         width: 96px;
     }
     .icon-wrapper {
-        grid-template-columns: repeat(3, 100px); 
+        grid-template-columns: repeat(6, 1fr); 
         justify-content: center;  
         gap: 50px;
     }
-    .icon-wrapper > div:nth-last-child(1),
-    .icon-wrapper > div:nth-last-child(2) {
-        margin-left: 140px;
-    }
+    .top {
+        grid-column: span 2;
+        }
+        .bottom {
+        grid-column: span 2;
+        }
+
+        
+        .bottom-1 {
+        grid-column: 2 / span 2;
+        }
+        .bottom-2 {
+        grid-column: 4 / span 2;
+        }
+  
+
  
 }

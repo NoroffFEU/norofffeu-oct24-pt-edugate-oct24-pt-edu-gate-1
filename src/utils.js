@@ -1,4 +1,12 @@
+import {logout} from './auth.js';
+
 export function getInitials(fullName){
     if(!fullName) return "";
     return fullName.trim().split(" ").map(name => name[0]).join("").toUpperCase();
+}
+
+export function handleLogout(){
+    logout();
+    history.pushState(null, null, "/login");
+    window.dispatchEvent(new PopStateEvent("popstate"));
 }

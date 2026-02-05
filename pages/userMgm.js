@@ -1,0 +1,1 @@
+export default () => `<h1>User management comming soom</h1>`

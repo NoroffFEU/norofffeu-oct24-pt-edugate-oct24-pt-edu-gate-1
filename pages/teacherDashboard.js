@@ -1,13 +1,13 @@
 import Sidebar from "../components/sidebar.js";
-import { getInitials } from "../src/utils.js";
+import { getInitials, handleLogout } from "../src/utils.js";
+import { getUser } from "../src/auth.js";
 
-const loggedInUser ={
-  name: "Joe Bloggs",
-  role: "teacher"
-};
+
+
+
 
 export default function teacherDashboard(){
-
+  const user = getUser();
     return /*HTML*/ `
 
     <div class="layout">
@@ -18,31 +18,35 @@ export default function teacherDashboard(){
 
         <div class="profile-dash-info">
          <div id="avatar-root"></div>
-         <h2>${loggedInUser.name}</h2>
-         <p>${loggedInUser.role} at Edugate school</p>
+         <h2>${user.name}</h2>
+         <p>${user.role} at Edugate school</p>
         </div>
 
         <div class="icon-wrapper">
-          <div>
+          <a href="/results" data-link class="icon-item top">
             <img src="../public/icons/results.png">
             <p>View results</p>
-          </div>
-          <div>
+          </a>
+
+          <a href="/add-results" data-link class="icon-item top">
             <img src="../public/icons/add-results.png">
             <p>Add results</p>
-          </div>
-          <div>
+          </a>
+
+          <a href="/top-students" data-link class="icon-item top">
             <img src="../public/icons/top-students.png">
             <p>Top students</p>
-          </div>
-          <div>
+          </a>
+
+          <a href="/profile" data-link class="icon-item bottom bottom-1">
             <img src="../public/icons/user-circle.png">
             <p>See profile</p>
-          </div>         
-          <div>
+          </a>
+
+          <a href="/logout" id="dashboard-logout" data-link class="icon-item bottom bottom-2">
             <img src="../public/icons/logout.png">
             <p>Log out</p>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -51,18 +55,26 @@ export default function teacherDashboard(){
  
 }
 export function initTeacherDashboard() {
-  console.log("INIT DASHBOARD");
+
+  const user = getUser();
+  if (!user) return;
 
   const sidebarRoot = document.getElementById("sidebar-root");
   const avatarRoot = document.getElementById("avatar-root");
-
-  console.log("avatarRoot", avatarRoot);
   
-  sidebarRoot.appendChild(Sidebar(loggedInUser.role));
+  sidebarRoot.appendChild(Sidebar(user.role));
 
   const avatar = document.createElement("div");
   avatar.className = "avatar";
-  avatar.textContent = getInitials(loggedInUser.name);
+  avatar.textContent = getInitials(user.name);
 
   avatarRoot.appendChild(avatar)
+
+  const logoutBtn = document.getElementById("dashboard-logout");
+  if(logoutBtn){
+    logoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      handleLogout();
+    })
+  }
 }
