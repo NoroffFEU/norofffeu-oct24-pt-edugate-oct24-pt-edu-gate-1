@@ -1,6 +1,13 @@
 export default function Header() {
   return /*HTML*/ `
-  <h1>This is the Header</h1>
+  <div>
+    <ul>
+    <li class="active">Dashboard</li>
+    <li>About</li>
+    <li>Contact</li>
+    </ul>
+    <img class="hamburger-menu" src="../public/icons/hamburger-menu.png">
+  </div>
   `;
 }
 

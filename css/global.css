@@ -17,17 +17,66 @@ header {
 	border: var(--color-neutral-medium-gray);
 	border-style: inset;
 	border-width: 0.5px;
-	
+	background: var(--color-neutral-gray); 
+	background-image: url("../public/img/logo-header-cropped.png");
+	background-position: left;
+	background-repeat: no-repeat;
+	height: 7%;
 	position: sticky;
 	top: 0;
 	z-index: 9; 
-	background: var(--color-neutral-gray);
+	
 }
+.hamburger-menu {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+
+}
+header ul{
+	display: none;
+	
+}
+header li{
+	margin-left: 100px;
+	font-size: larger;
+}
+header .active{
+	text-decoration: underline;
+	text-decoration-color: var(--primary-color);
+	text-decoration-thickness: 2px;
+	
+
+}
+
 
 /* Footer */
 
 footer {
+	background-image: url("../public/img/Circles_illustration_mobile.png");
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	background-size: contain;
+	max-height: 250px;
 	display: flex;
 	flex-direction: row;
 	height: 100%;
+}
+
+@media  (min-width: 750px) {
+	header ul{
+		display: block;
+		list-style-type: none;
+		display: flex;
+		flex-direction: row;
+		position: absolute;
+		right: 10%;
+	}
+	footer {
+		background-image: url("../public/img/circle-footer.png");
+		background-position: center bottom;
+	}
+	.hamburger-menu{
+		display: none;
+	}
 }
