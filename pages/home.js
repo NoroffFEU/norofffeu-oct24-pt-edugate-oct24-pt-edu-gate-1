@@ -1,6 +1,5 @@
 export default function Home() {
-    
-    return /*HTML*/`
+  return /*HTML*/ `
     <div>
         <h1>Home</h1>
         <nav>
@@ -8,6 +7,8 @@ export default function Home() {
             <br>
            <a href="/dashboard" data-link>Go to dashboard</a>
             <br><br>
+            <a href="/contact" data-link>Go to contact</a>
+            <br>
             <a href="/non-existent-page" data-link>Go to 404 Page</a>
         </nav>
     </div>  
