@@ -71,6 +71,12 @@ header .active{
 	border-radius: 6px;
 	
 }
+.login-btn:hover{	
+	background-color: #BBDEFB;
+}
+.signup-btn:hover{	
+	background-color: #388E3C;
+}
 .signup-btn{
 	border: 2px solid var(--primary-color);
 	background-color: var(--primary-color);
