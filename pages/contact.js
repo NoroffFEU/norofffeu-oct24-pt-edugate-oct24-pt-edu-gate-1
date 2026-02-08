@@ -41,7 +41,9 @@ export default function Contact() {
       // alert enquiry has been sent
 
       if (!hasError) {
-        alert("Your enquiry has been sent");
+        document.getElementById("contact-enquiry").classList.remove("hidden");
+
+        document.getElementById("contact-form").reset();
       }
     });
   }, 0);
@@ -92,6 +94,9 @@ export default function Contact() {
           </div>
 
           <button id="contact-btn" type="button">Submit</button>
+          <p id="contact-enquiry" class="enquiry-message hidden">
+            Your enquiry has been sent
+          </p>
         </form>
       </div>
     </section>

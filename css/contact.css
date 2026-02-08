@@ -105,6 +105,12 @@
   border: 2px solid #ff5722;
 }
 
+.enquiry-message {
+  color: #4caf50;
+  font-weight: 700;
+  text-align: center;
+}
+
 /* Mobile */
 
 @media (max-width: 600px) {
