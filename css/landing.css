@@ -1,0 +1,9 @@
+/* Landing page */
+
+.hero {
+  height: 720px;
+  background-image: url("/public/img/heroimage-edugate.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

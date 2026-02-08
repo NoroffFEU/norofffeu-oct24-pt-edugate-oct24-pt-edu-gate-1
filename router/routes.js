@@ -12,6 +12,7 @@ import LogIn, { initLogin } from "../pages/login.js";
 import ResultManagement from "../pages/resultMgm.js";
 import UserManagement from "../pages/userMgm.js";
 import Contact from "../pages/contact.js";
+import Landing from "../pages/landing.js";
 
 const routes = [
   { path: "/", view: Home },
@@ -25,6 +26,7 @@ const routes = [
   { path: "/result-management", view: ResultManagement },
   { path: "/user-management", view: UserManagement },
   { path: "/contact", view: Contact },
+  { path: "/landing", view: Landing },
 ];
 
 export default routes;
