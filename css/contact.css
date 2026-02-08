@@ -89,6 +89,22 @@
   cursor: pointer;
 }
 
+/* Validation */
+
+.error-text {
+  color: #ff5722;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.hidden {
+  display: none;
+}
+
+#contact-form .input-error {
+  border: 2px solid #ff5722;
+}
+
 /* Mobile */
 
 @media (max-width: 600px) {
@@ -113,3 +129,4 @@
   #contact-form {
     width: 100%;
   }
+}
