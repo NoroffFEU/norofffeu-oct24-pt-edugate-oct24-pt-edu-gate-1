@@ -1,14 +1,16 @@
 export default function Contact() {
   return /* HTML */ `
     <section class="contact">
+      <h1>Contact</h1>
+
+      <p class="contact-text">
+        If you have any questions or feedback, please use the contact form.
+        <br />
+        <br />
+        We would love to hear from you
+      </p>
+
       <div class="contact-card">
-        <h1>Contact</h1>
-
-        <p>
-          If you have any questions or feedback, please use the contact form. We
-          would love to hear from you
-        </p>
-
         <form id="contact-form">
           <div class="form-field">
             <label for="email">Email</label>
