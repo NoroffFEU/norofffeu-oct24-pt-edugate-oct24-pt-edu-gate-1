@@ -37,6 +37,12 @@ export default function Contact() {
         message.nextElementSibling.classList.remove("hidden");
         hasError = true;
       }
+
+      // alert enquiry has been sent
+
+      if (!hasError) {
+        alert("Your enquiry has been sent");
+      }
     });
   }, 0);
 
