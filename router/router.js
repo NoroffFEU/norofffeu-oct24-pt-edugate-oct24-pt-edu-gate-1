@@ -17,12 +17,14 @@ function router() {
     }
     if (path.endsWith("index.html") || path === "/templates/") path = "/";
 
+    const route = routes.find(r => r.path === path);
 
-        if (!isLoggedIn() && path !== "/login") {
+    if( route?.protected && !isLoggedIn()){
         history.replaceState(null, null, "/login");
         path = "/login";
+        route = routes.find(r => r.path ==="/login");
     }
-    const route = routes.find(r => r.path === path);
+
     const view = route ? route.view : NotFound;
     document.querySelector("#app").innerHTML = view();
     
