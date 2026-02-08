@@ -13,6 +13,10 @@
   line-height: 1.6;
   text-align: left;
   gap: 16px;
+
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
 }
 
 /* Contact card */
@@ -47,6 +51,12 @@
   gap: 8px;
 }
 
+.form-field label {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+
 #contact-form input,
 #contact-form textarea {
   width: 100%;
@@ -78,3 +88,28 @@
   font-weight: 700;
   cursor: pointer;
 }
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .contact {
+    padding: 32px 16px;
+  }
+
+  .contact-text {
+    max-width: 360px;
+    margin: 0 auto 24px;
+    text-align: left;
+  }
+
+  .contact-card {
+    border: none;
+    padding: 0;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  #contact-form {
+    width: 100%;
+  }
