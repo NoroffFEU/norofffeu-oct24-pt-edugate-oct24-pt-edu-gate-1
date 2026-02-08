@@ -48,7 +48,7 @@ header .active{
 	
 
 }
-.about-page-wrapper{
+.about-page-wrapper, .landing-page{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
