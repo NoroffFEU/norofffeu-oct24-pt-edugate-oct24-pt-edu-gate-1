@@ -3,7 +3,8 @@ export default function Header() {
   <div>
     <ul>
     <li class="active">Dashboard</li>
-    <li>About</li>
+    <a href="/about" data-link><li >About</li></a>
+   
     <li>Contact</li>
     </ul>
     <img class="hamburger-menu" src="../public/icons/hamburger-menu.png">
