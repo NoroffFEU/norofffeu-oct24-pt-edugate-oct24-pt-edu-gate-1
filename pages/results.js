@@ -7,9 +7,9 @@ export default function Results(){
     Dashboard > Select Student
         <div class="results-topbar">
             <div class="search-box">
-                <input type="text" id="student-search" placeholder="Search for results..."/>
+                <input type="text" id="student-search" placeholder="Search for student..."/>
                 <button class="search-btn">🔍</button>
-                
+                <h1>NOT FINISHED </h1>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@ export async function initStudentSearch() {
             return;
         }
         setCurrentStudent(foundStudent);
-            console.log(foundStudent)
+    
         history.pushState(null, null, "/student-results");
         window.dispatchEvent(new PopStateEvent("popstate"));
 
