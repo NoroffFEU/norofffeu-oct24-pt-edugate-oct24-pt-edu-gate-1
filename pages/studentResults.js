@@ -1,5 +1,7 @@
 
 import { getCurrentStudent } from "../src/studentState.js";
+import { createEditResultModal } from "../components/modal/editResultModal.js";
+import { createDeleteResultModal } from "../components/modal/deleteResultModal.js";
 
 export default function Results() {
   return `
@@ -49,6 +51,8 @@ export default function Results() {
 
 export async function initStudentResultPage(){
     let currentSubjects = [];
+    let editIndex = null;
+    let deleteIndex = null;
     
     const searchInput = document.getElementById("result-search");
     const subtitle = document.getElementById("results-subtitle");
@@ -62,7 +66,39 @@ export async function initStudentResultPage(){
     const studentResult = results.find(r=> r.studentId === selectedStudent.id);
 
     currentSubjects = studentResult.subjects
-    renderSubjects(currentSubjects, studentResult.session, studentResult.term);
+
+    const editModal = createEditResultModal(updatedSubject => {
+    currentSubjects[editIndex] = updatedSubject;
+    renderSubjects(
+      currentSubjects,
+      studentResult.session,
+      studentResult.term,
+      handleEdit,
+      handleDelete
+    );
+  });
+      const deleteModal = createDeleteResultModal(() => {
+        currentSubjects.splice(deleteIndex, 1);
+        renderSubjects(
+        currentSubjects,
+        studentResult.session,
+        studentResult.term,
+        handleEdit,
+        handleDelete
+        );
+    });
+
+    function handleEdit(subject, index){
+        editIndex = index;
+        editModal.open(subject);
+    }
+    function handleDelete(index){
+        deleteIndex = index;
+        deleteModal.open();
+    }
+
+
+      renderSubjects( currentSubjects, studentResult.session, studentResult.term, handleEdit, handleDelete);
     
     subtitle.textContent = `Here are the results for ${selectedStudent.firstName} ${selectedStudent.lastName}`;
 
@@ -74,26 +110,27 @@ export async function initStudentResultPage(){
             sub.grade.toLowerCase().includes(value) ||
             sub.score.toString().includes(value)
         );
-        renderSubjects(filtered, studentResult.session, studentResult.term);
+     
+        renderSubjects( currentSubjects, studentResult.session, studentResult.term, handleEdit, handleDelete);
     })
     
    
 }
 
-function renderSubjects(subjects, session, term){
+function renderSubjects(subjects, session, term, onEdit, onDelete){
     const rowsContainer = document.getElementById("rows");
     rowsContainer.innerHTML = "";
     if(subjects.length === 0){
         rowsContainer.innerHTML = "<div>No results found!</diV>"
     }
-    subjects.forEach(sub => {
+    subjects.forEach((sub, index) => {
         const tableRow = document.createElement("div");
         tableRow.className = "row";
         tableRow.innerHTML = `
             <div>${session}</div>
             <div>${term}</div>
             <div>${sub.name}</div>
-            <div>exam..</div>
+            <div></div>
             <div>${sub.score}</div>
             <div>${sub.grade}</div>
                
@@ -103,6 +140,9 @@ function renderSubjects(subjects, session, term){
             </div>
 
         `;
+        tableRow.querySelector(".edit-btn").addEventListener("click", () => onEdit(sub, index));
+        tableRow.querySelector(".delete-btn").addEventListener("click", () => onDelete(index));
+
         rowsContainer.appendChild(tableRow);
     });
 
