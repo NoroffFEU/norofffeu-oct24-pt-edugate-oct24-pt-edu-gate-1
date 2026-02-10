@@ -1,3 +1,5 @@
+import { login } from "../src/auth.js";
+
 export default function Login() {
   setTimeout(() => {
     const button = document.querySelector("#login-btn");
@@ -11,7 +13,13 @@ export default function Login() {
         emailInput.value === "teacher@edugate.com" &&
         passwordInput.value === "password1"
       ) {
-        window.location.href = "/dashboard";
+        login({
+        name: "Joe Bloggs",
+        role: "teacher"
+      });
+
+      history.pushState(null, null, "/dashboard");
+      window.dispatchEvent(new PopStateEvent("popstate"));
       } else {
         document.getElementById("login-error").classList.remove("hidden");
       }
@@ -72,3 +80,5 @@ export default function Login() {
     </section>
   `;
 }
+
+

@@ -1,0 +1,1 @@
+export default () => `<h1>Results Coming soom</h1>`
