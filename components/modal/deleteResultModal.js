@@ -9,7 +9,7 @@ export function createDeleteResultModal(onConfirm) {
       <p>Are you sure you want to delete this student's selected results? This action is permanent and cannot be undone.</p>
 
     <div class="modal-actions">
-        <button class="danger btn">Yes, delete results</button>
+        <button class="btn btn-danger">Yes, delete results</button>
         <button class="btn btn-outline">Cancel</button>
     </div>
     </div>
@@ -20,7 +20,7 @@ export function createDeleteResultModal(onConfirm) {
   modal.querySelector(".close-btn").addEventListener("click", close);
   modal.querySelector(".btn-outline").addEventListener("click", close);
 
-  modal.querySelector(".danger").addEventListener("click", () => {
+  modal.querySelector(".btn-danger").addEventListener("click", () => {
     onConfirm();
     close();
   });

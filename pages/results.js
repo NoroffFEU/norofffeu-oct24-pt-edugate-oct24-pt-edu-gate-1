@@ -8,16 +8,13 @@ export default function Results(){
         <div class="results-topbar">
             <div class="search-box">
                 <input type="text" id="student-search" placeholder="Search for student..."/>
-                <button class="search-btn">🔍</button>
+                <button class="search-btn"></button>
                 <h1>NOT FINISHED </h1>
             </div>
         </div>
     </div>
     
     `;
-
- 
-
 
 }
 
