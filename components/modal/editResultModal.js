@@ -1,9 +1,5 @@
-export function createEditResultModal(onUpdate) {
-  const modal = document.createElement("div");
-  modal.className = "modal hidden";
-  let currentData = null;
-
-  modal.innerHTML = `
+function createModalHTML() {
+  return `
     <div class="modal-content edit-modal" data-mode="view">
       <button class="close-btn">✕</button>
 
@@ -85,97 +81,115 @@ export function createEditResultModal(onUpdate) {
             <button id="edit-cancel-btn" class="btn btn-outline">Cancel</button>
           </div>
         </div>
+
       </div>
     </div>
   `;
+}
+
+export function createEditResultModal(onUpdate) {
+
+  const modal = document.createElement("div");
+  modal.className = "modal hidden";
+
+  modal.innerHTML = createModalHTML();
+
   const modalContent = modal.querySelector(".edit-modal");
 
-  /* ---------- helpers ---------- */
-  const close = () =>{
+  let currentData = null;
+
+ 
+
+  function close() {
     modalContent.dataset.mode = "view";
     modal.classList.add("hidden");
-  } ;
+  }
 
-  modal.querySelector(".close-btn").addEventListener("click", close);
+  function fillViewData(data) {
+    modal.querySelector("#view-year").textContent = data.session ?? "-";
+    modal.querySelector("#view-term").textContent = data.term ?? "-";
+    modal.querySelector("#view-subject").textContent = data.name;
+    modal.querySelector("#view-exam").textContent = data.exam ?? "-";
+    modal.querySelector("#view-score").textContent = data.score;
+    modal.querySelector("#view-grade").textContent = data.grade;
+  }
 
-  /* ---------- EDIT buttons ---------- */
+  function fillEditData(data) {
+    modal.querySelector("#edit-year").value = data.session ?? "";
+    modal.querySelector("#edit-term").value = data.term ?? "";
+    modal.querySelector("#edit-subject").value = data.name;
+    modal.querySelector("#edit-exam").value = data.exam ?? "";
+    modal.querySelector("#edit-score").value = data.score;
+    modal.querySelector("#edit-grade").value = data.grade;
+  }
 
-  modal.querySelector("#edit-update-btn").addEventListener("click", () => {
-    onUpdate({
-      
-      session: modal.querySelector("#edit-year").value,
-      term: modal.querySelector("#edit-term").value,
-      name: modal.querySelector("#edit-subject").value,
-      exam: modal.querySelector("#edit-exam").value,
-      score: Number(modal.querySelector("#edit-score").value),
-      grade: modal.querySelector("#edit-grade").value,
-      
-    }, currentData
-  );
-    
-
-    close();
-  });
-
-  modal.querySelector("#edit-cancel-btn").addEventListener("click", () => {
-    modalContent .dataset.mode = "view";
-  });
-
-  /* ---------- VIEW buttons ---------- */
-
-  modal.querySelector("#view-edit-btn").addEventListener("click", () => {
-    console.log("VIEW EDIT CLICKED");
-    if(!currentData) return;
-
+  function switchToEdit() {
+    if (!currentData) return;
     modalContent.dataset.mode = "edit";
-    modal.querySelector("#edit-year").value = currentData.session ?? "";
-    modal.querySelector("#edit-term").value = currentData.term ?? "";
-    modal.querySelector("#edit-subject").value = currentData.name;
-    modal.querySelector("#edit-exam").value = currentData.exam ?? "";
-    modal.querySelector("#edit-score").value = currentData.score;
-    modal.querySelector("#edit-grade").value = currentData.grade;
-  });
+    fillEditData(currentData);
+  }
 
-  modal.querySelector("#view-delete-btn").addEventListener("click", () => {
-    if (typeof modal.onDelete === "function") {
-      close();
-      modal.onDelete();
-    }
-  });
+  function setupEventListeners() {
 
+    modal.querySelector(".close-btn")
+      .addEventListener("click", close);
+
+    modal.querySelector("#edit-update-btn")
+      .addEventListener("click", () => {
+
+        const updatedFields = {
+          session: modal.querySelector("#edit-year").value,
+          term: modal.querySelector("#edit-term").value,
+          name: modal.querySelector("#edit-subject").value,
+          exam: modal.querySelector("#edit-exam").value,
+          score: Number(modal.querySelector("#edit-score").value),
+          grade: modal.querySelector("#edit-grade").value
+        };
+
+        onUpdate(updatedFields, currentData);
+        close();
+      });
+
+    modal.querySelector("#edit-cancel-btn")
+      .addEventListener("click", () => {
+        modalContent.dataset.mode = "view";
+      });
+
+    modal.querySelector("#view-edit-btn")
+      .addEventListener("click", switchToEdit);
+
+    modal.querySelector("#view-delete-btn")
+      .addEventListener("click", () => {
+        if (typeof modal.onDelete === "function") {
+          close();
+          modal.onDelete();
+        }
+      });
+  }
+
+  setupEventListeners();
   document.body.appendChild(modal);
 
-  /* ---------- public API ---------- */
+
 
   return {
+
     openView(data, onDelete) {
       currentData = data;
-      modalContent.dataset.mode = "view";
       modal.onDelete = onDelete;
 
-      modal.querySelector("#view-year").textContent = data.session ?? "-";
-      modal.querySelector("#view-term").textContent = data.term ?? "-";
-      modal.querySelector("#view-subject").textContent = data.name;
-      modal.querySelector("#view-exam").textContent = data.exam ?? "-";
-      modal.querySelector("#view-score").textContent = data.score;
-      modal.querySelector("#view-grade").textContent = data.grade;
-
+      modalContent.dataset.mode = "view";
+      fillViewData(data);
       modal.classList.remove("hidden");
     },
 
     openEdit(data) {
       currentData = data;
-     modalContent.dataset.mode = "edit";
 
-      modal.querySelector("#edit-year").value = data.session ?? "";
-      modal.querySelector("#edit-term").value = data.term ?? "";
-      modal.querySelector("#edit-subject").value = data.name;
-      modal.querySelector("#edit-exam").value = data.exam ?? "";
-      modal.querySelector("#edit-score").value = data.score;
-      modal.querySelector("#edit-grade").value = data.grade;
-
+      modalContent.dataset.mode = "edit";
+      fillEditData(data);
       modal.classList.remove("hidden");
     }
+
   };
 }
-

@@ -56,18 +56,30 @@ export default function Results() {
   ` 
 }
 
-export async function initStudentResultPage() {
-  let currentSubjects =[];
-  let deleteIndex = null;
 
-  const searchInput = document.getElementById("result-search");
-  const subtitle = document.getElementById("results-subtitle");
-  const backBtn = document.querySelector(".back-btn");
+export async function initStudentResultPage(){
+  const state = {
+    currentSubjects: [],
+    studentResult: null,
+    deleteIndex: null,
+  };
+
+  setupNavigation();
+  state.studentResult = await loadStudentResults(state);
+  setupModals(state);
+  renderInitialPage(state);
+  setupSearch(state);
+}
+
+function setupNavigation(){
+   const backBtn = document.querySelector(".back-btn");
+
   backBtn.addEventListener("click", () => {
-     history.pushState(null, null, "/dashboard");
-      window.dispatchEvent(new PopStateEvent("popstate"));
-  })
-
+    history.pushState(null, null, "/dashboard");
+    window.dispatchEvent(new PopStateEvent("popstate"));
+  });
+}
+async function loadStudentResults(state) {
   const resultsRes = await fetch("../Data/Results.json");
   const resultData = await resultsRes.json();
 
@@ -76,83 +88,66 @@ export async function initStudentResultPage() {
     r => r.studentId === selectedStudent.id
   );
 
-  currentSubjects =  studentResult.subjects.map(sub => ({ ...sub }));
+  state.currentSubjects = studentResult.subjects.map(sub => ({ ...sub }));
 
-  /* ---------- modals ---------- */
+  document.getElementById("results-subtitle").textContent =
+    `Here are the results for ${selectedStudent.firstName} ${selectedStudent.lastName}`;
+
+  return studentResult;
+}
+function setupModals(state) {
 
   const editModal = createEditResultModal((updatedFields, originalSubject) => {
-
-  Object.assign(originalSubject, updatedFields);
-
-  renderSubjects(
-    currentSubjects,
-    studentResult.session,
-    studentResult.term,
-    handleView,
-    handleEdit,
-    handleDelete
-  );
-});
-
-  const deleteModal = createDeleteResultModal(() => {
-    currentSubjects.splice(deleteIndex, 1);
-
-    renderSubjects(
-      currentSubjects,
-      studentResult.session,
-      studentResult.term,
-      handleView,
-      handleEdit,
-      handleDelete
-    );
+    Object.assign(originalSubject, updatedFields);
+    render(state);
   });
 
-  /* ---------- handlers ---------- */
+  const deleteModal = createDeleteResultModal(() => {
+    state.currentSubjects.splice(state.deleteIndex, 1);
+    render(state);
+  });
 
-  function handleView(subject, index) {
-    deleteIndex = index;
+  state.handleView = (subject, index) => {
+    state.deleteIndex = index;
 
-      subject.session = studentResult.session;
-      subject.term = studentResult.term;
+    subject.session = state.studentResult.session;
+    subject.term = state.studentResult.term;
 
-      editModal.openView(
-      subject,
-      () => deleteModal.open()
-    );
-  }
+    editModal.openView(subject, () => deleteModal.open());
+  };
 
-  function handleEdit(subject, index) {
-    editIndex = index;
-
-    subject.session = studentResult.session;
-    subject.term = studentResult.term;
+  state.handleEdit = (subject) => {
+    subject.session = state.studentResult.session;
+    subject.term = state.studentResult.term;
 
     editModal.openEdit(subject);
-  }
-  function handleDelete(index) {
-    deleteIndex = index;
+  };
+
+  state.handleDelete = (index) => {
+    state.deleteIndex = index;
     deleteModal.open();
-  }
-
-  /* ---------- initial render ---------- */
-
+  };
+}
+function render(state) {
   renderSubjects(
-    currentSubjects,
-    studentResult.session,
-    studentResult.term,
-    handleView,
-    handleEdit,
-    handleDelete
+    state.currentSubjects,
+    state.studentResult.session,
+    state.studentResult.term,
+    state.handleView,
+    state.handleEdit,
+    state.handleDelete
   );
-
-  subtitle.textContent = `Here are the results for ${selectedStudent.firstName} ${selectedStudent.lastName}`;
-
-  /* ---------- search ---------- */
+}
+function renderInitialPage(state) {
+  render(state);
+}
+function setupSearch(state) {
+  const searchInput = document.getElementById("result-search");
 
   searchInput.addEventListener("input", () => {
     const value = searchInput.value.toLowerCase();
 
-    const filtered = currentSubjects.filter(sub =>
+    const filtered = state.currentSubjects.filter(sub =>
       sub.name.toLowerCase().includes(value) ||
       sub.grade.toLowerCase().includes(value) ||
       sub.score.toString().includes(value)
@@ -160,11 +155,11 @@ export async function initStudentResultPage() {
 
     renderSubjects(
       filtered,
-      studentResult.session,
-      studentResult.term,
-      handleView,
-      handleEdit,
-      handleDelete
+      state.studentResult.session,
+      state.studentResult.term,
+      state.handleView,
+      state.handleEdit,
+      state.handleDelete
     );
   });
 }
