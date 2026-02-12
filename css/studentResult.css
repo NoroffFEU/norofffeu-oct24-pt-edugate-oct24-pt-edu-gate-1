@@ -168,6 +168,45 @@
     cursor: pointer; 
     border-radius: 4px; 
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 2rem 0;
+}
+
+.pagination button {
+  min-width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.pagination button.active {
+  background: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  padding: 0 6px;
+  color: #999;
+}
   @media (min-width: 768px) { 
   .row { 
     grid-template-columns: 1fr 1fr 2fr 1fr 1.5fr 1fr 1.5fr; 
