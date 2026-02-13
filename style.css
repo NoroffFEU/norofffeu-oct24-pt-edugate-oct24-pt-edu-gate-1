@@ -1,8 +1,10 @@
 @import url("css/variables.css");
 @import url("css/global.css");
+@import url("css/sidebar.css");
+@import url("css/dashboard.css");
+@import url("css/contact.css");
+@import url("css//landing.css");
 @import url("css/login.css");
-@import url('css/sidebar.css');
-@import url('css/dashboard.css');
 @import url('css/studentResult.css');
 @import url('css/modal.css');
-@import url('css/dashboard.css')
+
