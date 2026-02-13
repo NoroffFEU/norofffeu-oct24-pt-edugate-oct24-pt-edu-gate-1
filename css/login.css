@@ -1,0 +1,189 @@
+/* Log in page */
+
+.login {
+  display: flex;
+  flex-direction: column;
+  padding: 60px 16px;
+}
+
+/* Login card */
+
+.login-card {
+  width: 100%;
+  max-width: 474px;
+  padding: 48px;
+  border: 3px solid #ccc;
+  background: #fff;
+
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  margin: 0 auto;
+}
+
+.login-card h1 {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+/* Form */
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 315px;
+  margin: 0 auto;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#login-form input {
+  width: 100%;
+  height: 50px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+
+  padding: 8px 12px;
+  font-size: 16px;
+  color: #333333;
+
+  box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#login-form button {
+  margin-top: 16px;
+
+  padding: 10px 20px;
+  background: #4caf50;
+  color: white;
+  border: none;
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+
+  border-radius: 6px;
+
+  align-self: center;
+  cursor: pointer;
+
+  box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.forgot-password {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  color: #333333;
+}
+
+.forgot-password span {
+  font-weight: 700;
+}
+
+/* Alert failed verification */
+.login-error {
+  display: flex;
+  align-self: flex-end;
+  gap: 32px;
+
+  width: 450px;
+  height: 167px;
+  padding: 16px;
+
+  background: #ffebee;
+  border-radius: 6px;
+
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.error-icon {
+  width: 80px;
+}
+
+.error.icon img {
+  width: 100%;
+  height: auto;
+}
+
+.login-error > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.error-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: #c62828;
+  margin: 0;
+}
+
+.error-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: #c62828;
+  margin: 0;
+}
+
+.close-error {
+  margin-right: auto;
+  align-self: flex-start;
+  width: 16px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .login {
+    margin-top: 40px;
+    padding: 20px;
+  }
+
+  .login-card {
+    width: 100%;
+    padding: 24px;
+    border: none;
+  }
+
+  #login-form button {
+    font-weight: 600;
+    padding: 10px 20px;
+  }
+
+  .login-error {
+    width: 100%;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .error-icon {
+    width: 48px;
+  }
+
+  .error-title {
+    font-size: 20px;
+  }
+
+  .error-text {
+    font-size: 16px;
+  }
+
+  .close-error {
+    width: 12px;
+  }
+}
