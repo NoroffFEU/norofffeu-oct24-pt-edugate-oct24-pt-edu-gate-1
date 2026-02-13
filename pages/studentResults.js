@@ -1,0 +1,303 @@
+
+import { getCurrentStudent } from "../src/studentState.js";
+import { createEditResultModal } from "../components/modal/editResultModal.js";
+import { createDeleteResultModal } from "../components/modal/deleteResultModal.js";
+
+export default function Results() {
+  return /*HTML*/`
+    <div class="results-page">
+       <nav class="breadcrumb">
+          <a href="/dashboard" data-link>Dashboard</a>
+          <span class="separator">›</span>
+          <a href="/results" data-link>Select Student</a>
+          <span class="separator">›</span>
+          <a href="/results" class="current" data-link>Student Result</a>
+      </nav>
+        <h1>Student Results </h1>
+        <p id="results-subtitle" class="subtitle">Search for a user by firstname</p>
+
+        <div class="results-topbar">
+            <div class="search-box">
+                <input type="text" id="result-search" placeholder="Search for results..."/>
+                <button class="search-btn"></button>
+            </div>
+            <button class="add-btn">Add result</button>
+           
+        </div>
+        
+
+        <div class="result-table">
+            <div class="row header">
+                <div class="col year">Year</div>
+                <div class="col term">Term</div>
+                <div class="col subject">Subject</div>
+                <div class="col exam">Exam</div>
+                <div class="col result">Result</div>
+                <div class="col grade">Grade</div>
+                <div class="col actions"></div>
+            </div>
+            <div id="rows"></div>
+        </div>
+
+        <div class="pagination">
+           
+        </div>
+
+        <button type="button" class="back-btn">Back to dashboard</button>
+    </div>
+  ` 
+}
+
+
+export async function initStudentResultPage(){
+  const state = {
+    currentSubjects: [],
+    studentResult: null,
+    deleteIndex: null,
+    currentPage: 1,
+    itemsPerPage: 5
+  };
+
+  setupNavigation();
+  state.studentResult = await loadStudentResults(state);
+  setupModals(state);
+  renderInitialPage(state);
+  setupSearch(state);
+}
+
+function setupNavigation(){
+   const backBtn = document.querySelector(".back-btn");
+
+  backBtn.addEventListener("click", () => {
+    history.pushState(null, null, "/dashboard");
+    window.dispatchEvent(new PopStateEvent("popstate"));
+  });
+}
+async function loadStudentResults(state) {
+  const resultsRes = await fetch("../Data/Results.json");
+  const resultData = await resultsRes.json();
+
+  const selectedStudent = getCurrentStudent();
+  const studentResult = resultData.results.find(
+    r => r.studentId === selectedStudent.id
+  );
+
+  state.currentSubjects = studentResult.subjects.map(sub => ({ ...sub }));
+
+  document.getElementById("results-subtitle").textContent =
+    `Here are the results for ${selectedStudent.firstName} ${selectedStudent.lastName}`;
+
+  return studentResult;
+}
+function setupModals(state) {
+
+  const editModal = createEditResultModal((updatedFields, originalSubject) => {
+    Object.assign(originalSubject, updatedFields);
+    render(state);
+  });
+
+  const deleteModal = createDeleteResultModal(() => {
+    state.currentSubjects.splice(state.deleteIndex, 1);
+    render(state);
+  });
+
+  state.handleView = (subject, index) => {
+    state.deleteIndex = index;
+
+    subject.session = state.studentResult.session;
+    subject.term = state.studentResult.term;
+
+    editModal.openView(subject, () => deleteModal.open());
+  };
+
+  state.handleEdit = (subject) => {
+    subject.session = state.studentResult.session;
+    subject.term = state.studentResult.term;
+
+    editModal.openEdit(subject);
+  };
+
+  state.handleDelete = (index) => {
+    state.deleteIndex = index;
+    deleteModal.open();
+  };
+}
+function render(state) {
+  const paginated = getPaginatedSubjects(state);
+
+  renderSubjects(
+    paginated,
+    state.studentResult.session,
+    state.studentResult.term,
+    state.handleView,
+    state.handleEdit,
+    state.handleDelete
+  );
+  renderPagination(state);
+}
+function renderInitialPage(state) {
+  render(state);
+}
+
+function setupSearch(state) {
+  const searchInput = document.getElementById("result-search");
+
+  searchInput.addEventListener("input", () => {
+    const value = searchInput.value.toLowerCase();
+
+    state.currentSubjects = state.studentResult.subjects
+      .filter(sub =>
+        sub.name.toLowerCase().includes(value) ||
+        sub.grade.toLowerCase().includes(value) ||
+        sub.score.toString().includes(value)
+      )
+      .map(sub => ({ ...sub }));
+
+    state.currentPage = 1;
+
+    render(state);
+  });
+}
+
+
+function renderSubjects(subjects, session, term, onView, onEdit, onDelete) {
+  const rowsContainer = document.getElementById("rows");
+  rowsContainer.innerHTML = "";
+
+  if (subjects.length === 0) {
+    rowsContainer.innerHTML = "<div>No results found</div>";
+    return;
+  }
+
+  subjects.forEach((sub, index) => {
+    const row = document.createElement("div");
+    row.className = "row";
+
+    row.innerHTML = `
+      <div class="col year">${session}</div>
+      <div class="col term">${term}</div>
+      <div class="col subject">${sub.name}</div>
+      <div class="col exam">${sub.exam ?? "-"}</div>
+      <div class="col result">${sub.score}</div>
+      <div class="col grade">${sub.grade}</div>
+      <div class="col actions">
+        <div class="info-btn"></div>
+        <button class="edit-btn">Edit</button>
+        <button class="delete-btn">Delete</button>
+      </div>
+    `;
+
+    row.querySelector(".info-btn").onclick = () => onView(sub, index);
+    row.querySelector(".edit-btn").onclick = () => onEdit(sub, index);
+    row.querySelector(".delete-btn").onclick = () => onDelete(index);
+
+    rowsContainer.appendChild(row);
+  });
+}
+
+function getPaginatedSubjects(state){
+  const start = (state.currentPage -1) * state.itemsPerPage;
+  const end = start + state.itemsPerPage;
+  return state.currentSubjects.slice(start, end)
+}
+
+function renderPagination(state) {
+  const pagination = document.querySelector(".pagination");
+  pagination.innerHTML = "";
+
+  const totalPages = calculateTotalPages(state);
+
+  if (totalPages <= 1) return;
+
+  renderNavigationButtons(pagination, state, totalPages);
+  
+}
+function calculateTotalPages(state) {
+  return Math.ceil(
+    state.currentSubjects.length / state.itemsPerPage
+  );
+}
+function createPaginationButton(label, page, state, options = {}) {
+  const { disabled = false, active = false } = options;
+
+  const btn = document.createElement("button");
+  btn.textContent = label;
+
+  if (disabled) btn.disabled = true;
+  if (active) btn.classList.add("active");
+
+  btn.addEventListener("click", () => {
+    state.currentPage = page;
+    render(state);
+  });
+
+  return btn;
+}
+function renderNavigationButtons(pagination, state, totalPages) {
+  pagination.appendChild(
+    createPaginationButton("«", 1, state, {
+      disabled: state.currentPage === 1
+    })
+  );
+
+  pagination.appendChild(
+    createPaginationButton("‹", state.currentPage - 1, state, {
+      disabled: state.currentPage === 1
+    })
+  );
+    renderPageNumbers(pagination, state, totalPages);
+
+  pagination.appendChild(
+    createPaginationButton("›", state.currentPage + 1, state, {
+      disabled: state.currentPage === totalPages
+    })
+  );
+
+  pagination.appendChild(
+    createPaginationButton("»", totalPages, state, {
+      disabled: state.currentPage === totalPages
+    })
+  );
+}
+function renderPageNumbers(pagination, state, totalPages) {
+  const maxVisible = 5;
+
+  let start = Math.max(1, state.currentPage - 2);
+  let end = Math.min(totalPages, start + maxVisible - 1);
+
+  if (end - start < maxVisible - 1) {
+    start = Math.max(1, end - maxVisible + 1);
+  }
+
+  if (start > 1) {
+    pagination.appendChild(
+      createPaginationButton("1", 1, state)
+    );
+
+    if (start > 2) {
+      const dots = document.createElement("span");
+      dots.textContent = "…";
+      pagination.appendChild(dots);
+    }
+  }
+
+  for (let i = start; i <= end; i++) {
+    pagination.appendChild(
+      createPaginationButton(i, i, state, {
+        active: i === state.currentPage
+      })
+    );
+  }
+
+  if (end < totalPages) {
+    if (end < totalPages - 1) {
+      const dots = document.createElement("span");
+      dots.textContent = "…";
+      pagination.appendChild(dots);
+    }
+
+    pagination.appendChild(
+      createPaginationButton(totalPages, totalPages, state)
+    );
+  }
+}

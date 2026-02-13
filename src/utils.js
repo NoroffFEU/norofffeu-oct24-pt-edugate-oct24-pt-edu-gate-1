@@ -10,3 +10,12 @@ export function handleLogout(){
     history.pushState(null, null, "/login");
     window.dispatchEvent(new PopStateEvent("popstate"));
 }
+
+export function findStudentByName(students, searchValue){
+    const value = searchValue.toLowerCase();
+
+    return students.find(student => 
+        `${student.firstName} ${student.lastName}`
+        .toLowerCase().includes(value)
+    )|| null;
+}
