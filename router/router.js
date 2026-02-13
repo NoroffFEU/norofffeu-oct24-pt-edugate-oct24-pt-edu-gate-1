@@ -16,17 +16,21 @@ function router() {
   } catch (e) {}
   if (path.endsWith("index.html") || path === "/templates/") path = "/";
 
-  if (!isLoggedIn() && path !== "/login") {
-    history.replaceState(null, null, "/login");
-    path = "/login";
-  }
-  const route = routes.find((r) => r.path === path);
-  const view = route ? route.view : NotFound;
-  document.querySelector("#app").innerHTML = view();
+    const route = routes.find(r => r.path === path);
 
-  if (route && route.init) {
-    route.init();
-  }
+    if( route?.protected && !isLoggedIn()){
+        history.replaceState(null, null, "/login");
+        path = "/login";
+        route = routes.find(r => r.path ==="/login");
+    }
+
+    const view = route ? route.view : NotFound;
+    document.querySelector("#app").innerHTML = view();
+    
+
+    if(route && route.init){
+        route.init();
+    }
 }
 
 function navigateTo(url) {

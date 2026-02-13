@@ -1,8 +1,11 @@
+import AuthButtons from "../components/authButtons.js";
+
 export default function Home() {
   return /*HTML*/ `
-    <div>
+    
         <h1>Home</h1>
         <nav>
+            <a href="/login" data-link>Go to login</a>
             <a href="/test" data-link>Go to Test Page</a>
             <br>
            <a href="/dashboard" data-link>Go to dashboard</a>
@@ -12,7 +15,14 @@ export default function Home() {
             <a href="/landing" data-link>Go to landing</a>
             <br>
             <a href="/non-existent-page" data-link>Go to 404 Page</a>
+        
+        
+            <div id="home-auth-buttons"></div>
         </nav>
-    </div>  
     `;
+}
+
+export function initHome(){
+    const root = document.getElementById("home-auth-buttons");
+    root.appendChild(AuthButtons());
 }

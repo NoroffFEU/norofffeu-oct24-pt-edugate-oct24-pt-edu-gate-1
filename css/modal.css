@@ -1,0 +1,166 @@
+/* ================= MODAL OVERLAY ================= */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+/* ================= MODAL BOX ================= */
+
+.modal-content {
+  background: #fff;
+  width: 420px;
+  max-width: calc(100% - 2rem);
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: relative;
+}
+
+/* close button */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--secondary-color);
+}
+
+/* ================= GRID ================= */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem;
+}
+
+/* ================= VIEW MODE ================= */
+
+.view-only {
+  display: grid;
+  grid-column: span 2;
+  gap: 1rem 1.5rem;
+}
+
+.view-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.view-item .label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.view-item .value {
+  font-size: 0.95rem;
+  color: #222;
+}
+
+/* view actions */
+.view-only .modal-actions {
+  grid-column: span 2;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+/* ================= EDIT MODE ================= */
+
+.edit-only {
+  display: none;
+  grid-column: span 2;
+  gap: 1rem 1.5rem;
+}
+
+.edit-modal[data-mode="edit"] .view-only {
+  display: none;
+}
+
+.edit-modal[data-mode="edit"] .edit-only {
+  display: grid;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.form-group input {
+  height: 42px;
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* edit actions */
+.edit-only .modal-actions {
+  grid-column: span 2;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn {
+  flex: 1;
+  height: 42px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+}
+
+.btn-outline {
+  background: #fff;
+  color: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+}
+
+.btn-danger {
+  background: var(--accent-color);
+  color: #fff;
+  border: none;
+}
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start; 
+}
+
+.modal-actions .btn {
+  width: auto;          
+  min-width: 160px;    
+  height: 44px;
+}

@@ -1,0 +1,238 @@
+.breadcrumb {
+ 
+  margin-bottom: 1.5rem;
+  color: var(--color-neutral-dark-grey);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: var(--color-neutral-dark-grey);
+  cursor: pointer;
+  font-size: smaller;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb .separator {
+   color: var(--color-neutral-dark-grey);
+}
+
+.breadcrumb .current {
+  color: var(--primary-color);
+  
+}
+.results-page { 
+  max-width: 1100px; 
+  margin: 0 auto; 
+  padding: 2rem; 
+} 
+.subtitle { 
+  color: var(--color-neutral-dark-grey); 
+  margin-bottom: 1.5rem; 
+} 
+.results-topbar {
+   display: flex; 
+   flex-direction: column;
+   justify-content: space-between; 
+   align-items: center; 
+   margin-bottom: 1rem; 
+  } 
+.search-box { 
+  display: flex; 
+  border-radius: 4px; 
+  overflow: hidden; 
+  min-width: 100%;
+} 
+.row { 
+  display: grid; 
+  grid-template-columns: 2fr 1fr 1fr 1fr ; 
+  padding: 0.75rem;
+  border-bottom: 1px solid #eee; 
+  align-items: center; 
+}
+.search-box input {
+    min-width: 80%;
+    border: none; 
+    padding: 0.5rem; 
+    outline: none; 
+  } 
+.search-btn {
+    background-image: url("../public/icons/search.png");
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position-y: 50%;
+    background-position-x: 9px;
+    background-color:white; 
+    border: 1px solid var(--primary-color); 
+    padding: 0 1rem; 
+    cursor: pointer; 
+    border-radius: 4px; 
+  } 
+
+.add-btn { 
+  color: var(--primary-color);
+  background-color: inherit;
+  border: none;
+  padding: 0.25rem 0.5rem; 
+  border-radius: 4px; 
+  cursor: pointer; 
+  position: relative;
+  left:40%;
+  top:10px;
+ } 
+.results-table { 
+  border: 1px solid #eee; 
+}
+
+.row.header { 
+  font-weight: bold; 
+  color: var(--primary-color); 
+  background: #f9f9f9; 
+} 
+.actions {
+         
+  display: flex; 
+  gap: 0.5rem; 
+} 
+      
+.edit-btn {
+         
+  background: none; 
+  border: none; 
+  color: var(--primary-color); 
+  cursor: pointer; 
+} 
+      
+.delete-btn { 
+        
+  background: var(--accent-color); 
+  color: white; 
+  border: none; 
+  padding: 0.25rem 0.5rem; 
+  border-radius: 4px; 
+  cursor: pointer; 
+}
+         
+.pagination { 
+  display: flex; 
+  justify-content: center; 
+  gap: 0.25rem; 
+  margin: 1.5rem 0; 
+}
+         
+         
+.pagination button { 
+  border: 1px solid #ccc; 
+  background: white; 
+  padding: 0.25rem 0.5rem; 
+  cursor: pointer; 
+} 
+         
+.pagination .active { 
+  background: var(--primary-color); 
+  color: white; 
+} 
+         
+.back-btn { display: block; 
+  margin: 0 auto; 
+  background: var(--secondary-color);
+           
+  color: white; 
+  border: none; 
+  padding: 0.5rem 1rem; 
+  border-radius: 4px; 
+} 
+           
+.col.year, .col.term, 
+.col.result, .edit-btn, 
+.delete-btn { 
+  display: none; 
+} 
+           
+#update-btn, #cancel-btn { 
+  display: none; 
+} 
+.info-btn{
+    background-image: url("../public/icons/info.png");
+    background-repeat: no-repeat;
+    background-color:inherit; 
+    height: 25px;
+    width: auto;
+    padding: 0 1rem; 
+    cursor: pointer; 
+    border-radius: 4px; 
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 2rem 0;
+}
+
+.pagination button {
+  min-width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.pagination button.active {
+  background: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  padding: 0 6px;
+  color: #999;
+}
+  @media (min-width: 768px) { 
+  .row { 
+    grid-template-columns: 1fr 1fr 2fr 1fr 1.5fr 1fr 1.5fr; 
+  }
+  .results-topbar {
+   flex-direction: row;
+  }
+  .search-box{
+    min-width: 50%;
+  }
+  .add-btn { 
+    background-color: var(--primary-color);
+    color:white;
+    position: unset;
+    
+    
+ } 
+    .col.year, 
+    .col.term, 
+    .col.result, 
+    .edit-btn, 
+    .delete-btn { 
+      display: block; 
+    } 
+
+    .info-btn {
+        display: none; 
+    }
+  }
