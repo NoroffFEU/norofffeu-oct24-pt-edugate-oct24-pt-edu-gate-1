@@ -14,6 +14,8 @@ export default function Home() {
             <br>
             <a href="/landing" data-link>Go to landing</a>
             <br>
+            <a href="/signup" data-link>Go to sign up</a>
+            <br>
             <a href="/non-existent-page" data-link>Go to 404 Page</a>
         
         
@@ -22,7 +24,7 @@ export default function Home() {
     `;
 }
 
-export function initHome(){
-    const root = document.getElementById("home-auth-buttons");
-    root.appendChild(AuthButtons());
+export function initHome() {
+  const root = document.getElementById("home-auth-buttons");
+  root.appendChild(AuthButtons());
 }

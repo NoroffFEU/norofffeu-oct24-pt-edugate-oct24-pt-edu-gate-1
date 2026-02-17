@@ -60,7 +60,7 @@ export default function SignUp() {
             />
           </div>
 
-          <button id="signup-btn" type="submit">Submit</button>
+          <button id="signup-btn" type="button">Submit</button>
         </form>
       </div>
     </section>
