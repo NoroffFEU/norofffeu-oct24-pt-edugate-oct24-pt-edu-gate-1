@@ -59,6 +59,11 @@
   color: #2196f3;
 }
 
+.hero-buttons .btn {
+  flex: 0 0 auto;
+  min-width: 160px;
+}
+
 /* Mobile */
 @media (max-width: 750px) {
   .hero {

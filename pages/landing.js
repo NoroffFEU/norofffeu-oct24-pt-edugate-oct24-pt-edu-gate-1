@@ -11,8 +11,8 @@ export default function Landing() {
       </div>
     </section>
     <div class="hero-buttons">
-      <a href="/signup" class="btn green">Sign up</a>
-      <a href="/login" class="btn blue">Log in</a>
+      <a href="/signup" data-link class="btn green">Sign up</a>
+      <a href="/login" data-link class="btn blue">Log in</a>
     </div>
   `;
 }
