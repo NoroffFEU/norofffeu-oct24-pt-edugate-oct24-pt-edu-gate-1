@@ -23,7 +23,7 @@ export default function Results(){
             </div>
         </div>
 
-        <div class="result-table">
+        <div class="students-table">
             <div class="row header">
                 <div class="col id">Student ID</div>
                 <div class="col firstName">

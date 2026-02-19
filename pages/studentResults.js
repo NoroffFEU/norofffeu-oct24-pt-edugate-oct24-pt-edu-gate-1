@@ -112,6 +112,14 @@ function setupTable(state){
             onClick:(row)=> state.handleDelete(
                 state.currentSubjects.indexOf(row._original)
             )
+        },
+         {
+            label:"",
+            class:"info-btn",
+            onClick:(row)=> state.handleView(
+                row._original,
+              state.currentSubjects.indexOf(row._original)
+            )
         }
     ],
 
