@@ -16,26 +16,28 @@ export default function SignUp() {
             />
           </div>
 
-          <div class="form-field">
-            <label for="firstname">Firstname</label>
-            <input
-              type="text"
-              id="firstname"
-              name="firstname"
-              placeholder="Ola"
-              required
-            />
-          </div>
+          <div class="form-container">
+            <div class="form-field">
+              <label for="firstname">Firstname</label>
+              <input
+                type="text"
+                id="firstname"
+                name="firstname"
+                placeholder="Ola"
+                required
+              />
+            </div>
 
-          <div class="form-field">
-            <label for="surname">Surname</label>
-            <input
-              type="text"
-              id="surname"
-              name="surname"
-              placeholder="Nordmann"
-              required
-            />
+            <div class="form-field">
+              <label for="surname">Surname</label>
+              <input
+                type="text"
+                id="surname"
+                name="surname"
+                placeholder="Nordmann"
+                required
+              />
+            </div>
           </div>
 
           <div class="form-field">
