@@ -19,6 +19,7 @@
   flex-direction: column;
   gap: 48px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .signup-card h1 {
@@ -49,8 +50,8 @@
   gap: 24px;
 }
 
-.form-container .form-field {
-  flex: 1;
+.form-container .form-field:first-child {
+  margin-right: 12px;
 }
 
 #signup-form input {
