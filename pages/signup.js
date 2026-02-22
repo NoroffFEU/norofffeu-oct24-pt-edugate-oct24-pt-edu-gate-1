@@ -1,20 +1,38 @@
 export default function SignUp() {
   setTimeout(() => {
     const button = document.querySelector("#signup-btn");
+    const closeBtn = document.querySelector(".close-error");
 
     button.addEventListener("click", function () {
       const passwordInput = document.querySelector("#password");
       const confirmPasswordInput = document.querySelector("#confirm-password");
 
       if (passwordInput.value !== confirmPasswordInput.value) {
-        alert("Password does not match");
+        document.getElementById("signup-error").classList.remove("hidden");
         return;
       }
+    });
+
+    closeBtn.addEventListener("click", () => {
+      document.getElementById("signup-error").classList.add("hidden");
     });
   }, 0);
 
   return /* HTML */ `
     <section class="signup">
+      <div id="signup-error" class="login-error hidden">
+        <div class="error-icon">
+          <img src="public/icons/fail.png" />
+        </div>
+
+        <div>
+          <p class="error-title">Failed Sign Up!</p>
+          <p class="error-text">Wrong password or email address!</p>
+        </div>
+
+        <img src="public/icons/x-red.png" class="close-error" />
+      </div>
+
       <div class="signup-card">
         <h1>Sign up</h1>
 
