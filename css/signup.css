@@ -88,6 +88,8 @@
   box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+/* Alert failed verification - same as login.css */
+
 /* Mobile */
 
 @media (max-width: 600px) {

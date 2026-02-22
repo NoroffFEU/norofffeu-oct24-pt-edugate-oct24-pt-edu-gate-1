@@ -11,6 +11,9 @@ export default function SignUp() {
         document.getElementById("signup-error").classList.remove("hidden");
         return;
       }
+
+      history.pushState(null, null, "/login");
+      window.dispatchEvent(new PopStateEvent("popstate"));
     });
 
     closeBtn.addEventListener("click", () => {
