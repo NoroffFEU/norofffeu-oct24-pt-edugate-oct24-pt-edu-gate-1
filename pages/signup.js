@@ -4,14 +4,12 @@ export default function SignUp() {
 
     button.addEventListener("click", function () {
       const passwordInput = document.querySelector("#password");
-      const confirmPassword = document.querySelector("#confirm-password");
+      const confirmPasswordInput = document.querySelector("#confirm-password");
 
       if (passwordInput.value !== confirmPasswordInput.value) {
         alert("Password does not match");
         return;
       }
-
-      console.log("Password check if ok");
     });
   }, 0);
 
