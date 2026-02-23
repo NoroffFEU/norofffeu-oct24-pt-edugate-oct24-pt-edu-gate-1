@@ -3,6 +3,8 @@ import { createTable} from "../components/table/table.js";
 import { createPagination } from "../components/table/pagination.js";
 import { findStudentByName } from "../src/utils.js";
 import { setCurrentStudent } from "../src/studentState.js";
+import { createEditStudentModal } from "../components/modal/editStudentModal.js";
+import { createDeleteStudentModal } from "../components/modal/deleteStudentModal.js";
 
 export default function Results(){
     return /*HTML*/`
@@ -62,6 +64,8 @@ export async function initStudentSearch(){
     };
 
     setupNavigation();
+    
+    setupModals(state);
 
     setupTable(state);
 
@@ -91,31 +95,37 @@ async function loadStudents(state){
 }
 
 function setupTable(state){
-   
-    const container = document.getElementById("result-table-rows");
-   
-    state.table = createTable(container,
-    
+
+    const container =
+        document.getElementById("result-table-rows");
+
+    state.table = createTable(
+
+        container,
 
         [
-        { class:"id", value:"id" },
-        { class:"firstName", value:"firstName" },
-        { class:"lastName", value:"lastName" },
-        { class:"selectYear", value:"class" }
+            { class:"id", value:"id" },
+            { class:"firstName", value:"firstName" },
+            { class:"lastName", value:"lastName" },
+            { class:"selectYear", value:"year" }
         ],
 
         [
-        {
-            label:"",
-            class:"info-btn",
-            onClick: selectStudent
-        }
-        ], 
-        {
-            onRowClick: (student) => {
-                selectStudent(student)
+            {
+                label:"",
+                class:"info-btn",
+                onClick:(student)=>{
+                    state.handleView(student);
+                }
             }
-        })
+        ],
+
+        {
+            onRowClick:(student)=>{
+                selectStudent(student);
+            }
+        }
+    );
 }
 
 function setupNavigation(){
@@ -158,6 +168,38 @@ function setupSearch(state){
 
         render(state);
     });
+}
+function setupModals(state){
+
+    const editModal =
+        createEditStudentModal((updatedFields, originalStudent)=>{
+
+            Object.assign(originalStudent, updatedFields);
+
+            render(state);
+        });
+
+    const deleteModal =
+        createDeleteStudentModal(()=>{
+
+            state.allStudents =
+                state.allStudents.filter(s => s !== state.selectedStudent);
+
+            state.filteredStudents =
+                state.filteredStudents.filter(s => s !== state.selectedStudent);
+
+            render(state);
+        });
+
+    state.handleView = (student)=>{
+
+        state.selectedStudent = student;
+
+        editModal.openView(
+            student,
+            ()=> deleteModal.open()
+        );
+    };
 }
 
 function render(state){

@@ -88,7 +88,6 @@ function setupPagination(state){
 }
 function setupTable(state){
   const container = document.getElementById("rows");
-  console.log(state.studentResult.session)
     state.table = createTable(
       container, 
     [
@@ -148,11 +147,9 @@ async function loadStudentResults(state) {
   const studentResult = resultData.results.find(
     r => r.studentId === selectedStudent.id
   );
-  console.log(studentResult)
-
 
   state.currentSubjects = studentResult.subjects.map(sub => ({ ...sub }));
-    console.log(state.currentSubjects)
+
 
   document.getElementById("results-subtitle").textContent =
     `Here are the results for ${selectedStudent.firstName} ${selectedStudent.lastName}`;

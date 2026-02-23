@@ -29,7 +29,7 @@ export function createTable(container, columns, actions = [], options = {}){
                 row.style.cursor = "pointer";
             }
 
-      // columns
+ 
       columns.forEach(col => {
 
         const cell = document.createElement("div");
@@ -42,7 +42,6 @@ export function createTable(container, columns, actions = [], options = {}){
         row.appendChild(cell);
       });
 
-      // actions
       if (actions.length > 0) {
 
         const actionsCell =
@@ -59,9 +58,10 @@ export function createTable(container, columns, actions = [], options = {}){
 
           btn.textContent = action.label;
 
-          btn.addEventListener("click", () =>
+          btn.addEventListener("click", (e) =>{
+             e.stopPropagation();
             action.onClick(item, index, context)
-          );
+          });
 
           actionsCell.appendChild(btn);
         });
