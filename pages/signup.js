@@ -16,9 +16,11 @@ export default function SignUp() {
       window.dispatchEvent(new PopStateEvent("popstate"));
     });
 
-    closeBtn.addEventListener("click", () => {
-      document.getElementById("signup-error").classList.add("hidden");
-    });
+    if (closeBtn) {
+      closeBtn.addEventListener("click", () => {
+        document.getElementById("signup-error").classList.add("hidden");
+      });
+    }
   }, 0);
 
   return /* HTML */ `
@@ -30,7 +32,7 @@ export default function SignUp() {
 
         <div>
           <p class="error-title">Failed Sign Up!</p>
-          <p class="error-text">Wrong password or email address!</p>
+          <p class="error-text">Passwords do not match!</p>
         </div>
 
         <img src="public/icons/x-red.png" class="close-error" />
