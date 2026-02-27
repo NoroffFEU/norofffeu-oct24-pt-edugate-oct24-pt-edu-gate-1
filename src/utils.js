@@ -14,7 +14,7 @@ export function handleLogout(){
 export function findStudentByName(students, searchValue){
     const value = searchValue.toLowerCase();
 
-    return students.find(student => 
+    return students.filter(student => 
         `${student.firstName} ${student.lastName}`
         .toLowerCase().includes(value)
     )|| null;

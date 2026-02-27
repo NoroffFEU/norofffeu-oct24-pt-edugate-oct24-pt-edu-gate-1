@@ -10,6 +10,8 @@ export default function Home() {
             <br>
            <a href="/dashboard" data-link>Go to dashboard</a>
             <br><br>
+            <a href="/results" data-link>Go to students</a>
+            <br><br>
             <a href="/contact" data-link>Go to contact</a>
             <br>
             <a href="/landing" data-link>Go to landing</a>
