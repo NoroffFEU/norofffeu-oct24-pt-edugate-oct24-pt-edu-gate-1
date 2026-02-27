@@ -9,6 +9,10 @@ body {
 .bg-neutral-light-gray {
 	background-color: var(--color-neutral-gray);
 }
+a{
+	text-decoration: none;
+	color:var(--color-neutral-dark-gray);
+}
 
 /* Header */
 

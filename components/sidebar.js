@@ -47,7 +47,7 @@ export default function Sidebar(role){
             { icon: "results.png", text: "Results management", path: "/result-management"},
             { icon: "user-management.png", text: "User management", path: "/user-management"},
             { icon: "top-students.png", text: "Top students", path: "/top-students"},
-            { icon: "logout.png", text: "Logout", path: "/logout"},
+            { icon: "logout.png", text: "Logout", path: "/login"},
 
         ], 
         studens: [

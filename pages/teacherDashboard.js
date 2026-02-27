@@ -43,7 +43,7 @@ export default function teacherDashboard(){
             <p>See profile</p>
           </a>
 
-          <a href="/logout" id="dashboard-logout" data-link class="icon-item bottom bottom-2">
+          <a href="/login" id="dashboard-logout" data-link class="icon-item bottom bottom-2">
             <img src="../public/icons/logout.png">
             <p>Log out</p>
           </a>
