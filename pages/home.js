@@ -18,6 +18,8 @@ export default function Home() {
             <br>
             <a href="/signup" data-link>Go to sign up</a>
             <br>
+            <a href="/registration" data-link>Go to registration</a>
+            <br>
             <a href="/non-existent-page" data-link>Go to 404 Page</a>
         
         

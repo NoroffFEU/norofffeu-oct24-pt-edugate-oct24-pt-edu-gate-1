@@ -18,6 +18,7 @@ import Landing from "../pages/landing.js";
 import Results, { initStudentSearch } from "../pages/results.js";
 import About, { initAbout } from "../pages/about.js";
 import SignUp from "../pages/signup.js";
+import Registration from "../pages/registration.js";
 
 const routes = [
   { path: "/", view: Home, init: initHome },
@@ -44,6 +45,7 @@ const routes = [
   { path: "/landing", view: Landing },
   { path: "/about", view: About, init: initAbout },
   { path: "/signup", view: SignUp },
+  { path: "/registration", view: Registration },
 ];
 
 export default routes;
