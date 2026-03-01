@@ -3,7 +3,7 @@ export default function Registration() {
 
     <section class="registration">
      <div class="registration-card">
-    <h1>Register</h1>
+    <h1>Registration</h1>
 
     <form id="registration-form">
      
