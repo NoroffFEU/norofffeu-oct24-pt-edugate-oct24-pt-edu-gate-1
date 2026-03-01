@@ -1,4 +1,13 @@
 export default function Registration() {
+  setTimeout(() => {
+    const button = document.querySelector("#registration-btn");
+
+    button.addEventListener("click", function () {
+      history.pushState(null, null, "/login");
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    });
+  }, 0);
+
   return /*HTML*/ `
 
     <section class="registration">
