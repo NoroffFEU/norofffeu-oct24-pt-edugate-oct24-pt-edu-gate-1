@@ -3,6 +3,39 @@ export default function Registration() {
     const button = document.querySelector("#registration-btn");
 
     button.addEventListener("click", function () {
+      const school = document.querySelector("#school");
+      const address1 = document.querySelector("#address1");
+      const city = document.querySelector("#city");
+      const postal = document.querySelector("#postal");
+
+      let hasError = false;
+
+      if (school.value === "") {
+        school.classList.add("input-error");
+        school.nextElementSibling.classList.remove("hidden");
+        hasError = true;
+      }
+
+      if (address1.value === "") {
+        address1.classList.add("input-error");
+        address1.nextElementSibling.classList.remove("hidden");
+        hasError = true;
+      }
+
+      if (city.value === "") {
+        city.classList.add("input-error");
+        city.nextElementSibling.classList.remove("hidden");
+        hasError = true;
+      }
+
+      if (postal.value === "") {
+        postal.classList.add("input-error");
+        postal.nextElementSibling.classList.remove("hidden");
+        hasError = true;
+      }
+
+      if (hasError) return;
+
       history.pushState(null, null, "/login");
       window.dispatchEvent(new PopStateEvent("popstate"));
     });
@@ -25,6 +58,7 @@ export default function Registration() {
        placeholder="Edugate"
        required
        />
+       <p class="error-message hidden">School is required</p>
      </div>
 
      <div class="form-field">
@@ -36,6 +70,7 @@ export default function Registration() {
        placeholder="Address"
        required
        />
+       <p class="error-message hidden">Address is required</p>
      </div>
 
      <div class="form-field">
@@ -58,6 +93,7 @@ export default function Registration() {
        placeholder="Oslo"
        required
        />
+       <p class="error-message hidden">City is required</p>
      </div>
 
      <div class="form-field">
@@ -69,10 +105,13 @@ export default function Registration() {
        placeholder="0000"
        required
        />
+       <p class="error-message hidden">Postal is required</p>
      </div>
     </div>
 
     <button id="registration-btn" type="button">Submit</button>
+
+
 
 
     </form>
