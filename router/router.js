@@ -1,5 +1,6 @@
 import routes from "./routes.js";
 import { isLoggedIn } from "../src/auth.js";
+import { setActiveNav } from "../src/utils.js";
 
 const NotFound = () => /*HTML*/ `
 <div>
@@ -14,14 +15,13 @@ function router() {
     const url = new URL(window.location.href);
     path = url.pathname;
   } catch (e) {}
-  if (path.endsWith("index.html") || path === "/templates/") path = "/";
+  if (path.endsWith("index.html") || path === "/templates/" || path === "/" ) path = "/landing";
 
     const route = routes.find(r => r.path === path);
 
     if( route?.protected && !isLoggedIn()){
-        history.replaceState(null, null, "/login");
-        path = "/login";
-        route = routes.find(r => r.path ==="/login");
+      
+       navigateTo("/login");
     }
 
     const view = route ? route.view : NotFound;
@@ -36,6 +36,7 @@ function router() {
 function navigateTo(url) {
   history.pushState(null, null, url);
   router();
+  setActiveNav();
 }
 
 export function initRouter() {

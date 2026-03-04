@@ -40,6 +40,9 @@
   align-items: center;
   gap: 0.25rem;
 }
+.icon-item:hover{
+    color: var(--primary-color)
+}
 
 /*avatar*/
 .avatar{

@@ -19,3 +19,26 @@ export function findStudentByName(students, searchValue){
         .toLowerCase().includes(value)
     )|| null;
 }
+
+export function setActiveNav(){
+    const links = document.querySelectorAll(".navbar a");
+    const currentPath = window.location.pathname;
+    console.log(currentPath, 'pathname')
+
+    links.forEach(link => {
+        const linkPath = link.getAttribute("href");
+        link.classList.remove("active");
+
+        if(linkPath === "/dashboard" && (
+            currentPath === "/dashboard" ||
+            currentPath.startsWith("/student-results") ||
+            currentPath.startsWith("/results") 
+        )
+    ){
+        link.classList.add("active");
+    }
+    else if( linkPath === currentPath){
+        link.classList.add("active")
+    }
+    });
+}
