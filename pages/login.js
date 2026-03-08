@@ -14,12 +14,12 @@ export default function Login() {
         passwordInput.value === "password1"
       ) {
         login({
-        name: "Joe Bloggs",
-        role: "teacher"
-      });
+          name: "Joe Bloggs",
+          role: "teacher",
+        });
 
-      history.pushState(null, null, "/dashboard");
-      window.dispatchEvent(new PopStateEvent("popstate"));
+        history.pushState(null, null, "/dashboard");
+        window.dispatchEvent(new PopStateEvent("popstate"));
       } else {
         document.getElementById("login-error").classList.remove("hidden");
       }
@@ -37,8 +37,8 @@ export default function Login() {
           <img src="public/icons/fail.png" />
         </div>
 
-        <div>
-          <p class="error-title">Failed Sign Up!</p>
+        <div class="error-content">
+          <p class="error-title">Failed Log in!</p>
           <p class="error-text">Wrong password or email address!</p>
         </div>
 
@@ -80,5 +80,3 @@ export default function Login() {
     </section>
   `;
 }
-
-
