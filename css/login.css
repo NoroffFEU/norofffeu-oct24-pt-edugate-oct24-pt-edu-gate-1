@@ -171,9 +171,12 @@
 
   .login-error {
     top: 80px;
-    right: 16px;
+
+    right: 0;
 
     width: 373px;
+    margin: 0 auto;
+
     gap: 12px;
     padding: 12px;
   }
