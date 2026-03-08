@@ -93,12 +93,15 @@
 
 /* Alert failed verification */
 .login-error {
+  position: fixed;
+  top: 100px;
+  right: 40px;
+
   display: flex;
-  align-self: flex-end;
-  gap: 32px;
+  align-items: flex-start;
+  gap: 24px;
 
   width: 450px;
-  height: 167px;
   padding: 16px;
 
   background: #ffebee;
@@ -111,21 +114,21 @@
   width: 80px;
 }
 
-.error.icon img {
+.error-icon img {
   width: 100%;
   height: auto;
 }
 
-.login-error > div {
+.error-content {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 14px;
 }
 
 .error-title {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
-  font-size: 32px;
+  font-size: 24px;
   color: #c62828;
   margin: 0;
 }
@@ -138,10 +141,9 @@
 }
 
 .close-error {
-  margin-right: auto;
-  align-self: flex-start;
   width: 16px;
   cursor: pointer;
+  margin-left: auto;
 }
 
 .hidden {
@@ -168,7 +170,13 @@
   }
 
   .login-error {
-    width: 100%;
+    top: 80px;
+
+    right: 0;
+
+    width: 373px;
+    margin: 0 auto;
+
     gap: 12px;
     padding: 12px;
   }
