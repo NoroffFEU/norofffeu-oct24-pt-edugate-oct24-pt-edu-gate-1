@@ -9,7 +9,7 @@ import StudentResults, {
 } from "../pages/studentResults.js";
 import AddResults from "../pages/addResults.js";
 import TopStudents from "../pages/topStudents.js";
-import Profile from "../pages/profile.js";
+import Profile, { initProfilePage } from "../pages/profile.js";
 import LogIn from "../pages/login.js";
 import ResultManagement from "../pages/resultMgm.js";
 import UserManagement from "../pages/userMgm.js";
@@ -19,6 +19,7 @@ import Results, { initStudentSearch } from "../pages/results.js";
 import About, { initAbout } from "../pages/about.js";
 import SignUp from "../pages/signup.js";
 import Registration from "../pages/registration.js";
+import editProfile, { initEditProfile } from "../pages/editprofile.js";
 
 const routes = [
   { path: "/", view: Home, init: initHome },
@@ -34,10 +35,12 @@ const routes = [
     path: "/student-results",
     view: StudentResults,
     init: initStudentResultPage,
+     protected: true
   },
   { path: "/add-results", view: AddResults, protected: true },
   { path: "/top-students", view: TopStudents, protected: true },
-  { path: "/profile", view: Profile, protected: true },
+  { path: "/profile", view: Profile, init: initProfilePage,  protected: true},
+  { path: "/editProfile", view: editProfile, init: initEditProfile,  protected: true},
   { path: "/login", view: LogIn },
   { path: "/result-management", view: ResultManagement, protected: true },
   { path: "/user-management", view: UserManagement, protected: true },

@@ -15,7 +15,12 @@ export default function Login() {
       ) {
         login({
         name: "Joe Bloggs",
-        role: "teacher"
+        role: "teacher",
+        email: "joeblog2020@edugate.no",
+        birth: "01/01/2002",
+        id: 1921840,
+        gradYear: 2020,
+        school: "The academy",
       });
 
       history.pushState(null, null, "/dashboard");
