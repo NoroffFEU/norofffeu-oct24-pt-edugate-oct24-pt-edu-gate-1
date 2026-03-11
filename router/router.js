@@ -5,7 +5,7 @@ import { setActiveNav } from "../src/utils.js";
 const NotFound = () => /*HTML*/ `
 <div>
     <h1>404 - Page Not Found</h1>
-    <a href="/" data-link>Home</a>
+    <a href="/landing" data-link>Home</a>
 </div>
 `;
 
