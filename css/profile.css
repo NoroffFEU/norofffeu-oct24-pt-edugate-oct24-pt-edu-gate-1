@@ -62,7 +62,7 @@ input{
  border:1px solid #ccc;
 }
 
-input:disabled{
+input:read-only{
  background:#e0e0e0;
 }
 

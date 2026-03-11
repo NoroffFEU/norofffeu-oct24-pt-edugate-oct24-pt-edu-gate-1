@@ -30,13 +30,13 @@ export default function editProfile(){
             <input name="birth" value="${user.birth}" />
 
             <label>ID:</label>
-            <input value="${user.id}" disabled />
+            <input value="${user.id}" readonly/>
 
             <label>Grad Year:</label>
-            <input value="${user.gradYear}" disabled />
+            <input value="${user.gradYear}"  readonly />
 
             <label>School:</label>
-            <input value="${user.school}" disabled />
+            <input value="${user.school}"  readonly />
 
             <button class="greenBtn">Update</button>
 
