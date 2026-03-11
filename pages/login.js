@@ -1,4 +1,5 @@
 import { login } from "../src/auth.js";
+import { setActiveNav } from "../src/utils.js";
 
 export default function Login() {
   setTimeout(() => {
@@ -20,6 +21,7 @@ export default function Login() {
 
       history.pushState(null, null, "/dashboard");
       window.dispatchEvent(new PopStateEvent("popstate"));
+      setActiveNav();
       } else {
         document.getElementById("login-error").classList.remove("hidden");
       }

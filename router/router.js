@@ -1,5 +1,6 @@
 import routes from "./routes.js";
 import { isLoggedIn } from "../src/auth.js";
+import { setActiveNav } from "../src/utils.js";
 
 const NotFound = () => /*HTML*/ `
 <div>
@@ -35,6 +36,7 @@ function router() {
 function navigateTo(url) {
   history.pushState(null, null, url);
   router();
+  setActiveNav();
 }
 
 export function initRouter() {
