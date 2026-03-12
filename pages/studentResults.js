@@ -24,7 +24,7 @@ export default function StudentResults() {
                 <input type="text" id="result-search" placeholder="Search for results..."/>
                 <button class="search-btn"></button>
             </div>
-            <button class="add-btn">Add result</button>
+            <a href="/add-results" data-link ><button class="add-btn">Add result</button></a>
            
         </div>
       </div>
@@ -139,22 +139,44 @@ function setupNavigation(){
     window.dispatchEvent(new PopStateEvent("popstate"));
   });
 }
-async function loadStudentResults(state) {
-  const resultsRes = await fetch("../Data/Results.json");
-  const resultData = await resultsRes.json();
+async function loadStudentResults(state){
+
+  let resultData;
+
+  const saved = localStorage.getItem("results");
+
+  if(saved){
+
+    resultData = JSON.parse(saved);
+
+  } else {
+
+    const resultsRes = await fetch("../Data/Results.json");
+
+    resultData = await resultsRes.json();
+
+    localStorage.setItem("results", JSON.stringify(resultData));
+
+  }
 
   const selectedStudent = getCurrentStudent();
+
   const studentResult = resultData.results.find(
     r => r.studentId === selectedStudent.id
   );
 
-  state.currentSubjects = studentResult.subjects.map(sub => ({ ...sub }));
+  if(!studentResult){
+    console.warn("No results found for student");
+    return null;
+  }
 
+  state.currentSubjects = studentResult.subjects.map(sub => ({ ...sub }));
 
   document.getElementById("results-subtitle").textContent =
     `Here are the results for ${selectedStudent.firstName} ${selectedStudent.lastName}`;
 
   return studentResult;
+
 }
 function setupModals(state) {
 

@@ -7,7 +7,7 @@ import teacherDashboard, {
 import StudentResults, {
   initStudentResultPage,
 } from "../pages/studentResults.js";
-import AddResults from "../pages/addResults.js";
+import AddResults, { initAddResults } from "../pages/addResults.js";
 import TopStudents from "../pages/topStudents.js";
 import Profile, { initProfilePage } from "../pages/profile.js";
 import LogIn from "../pages/login.js";
@@ -37,7 +37,7 @@ const routes = [
     init: initStudentResultPage,
      protected: true
   },
-  { path: "/add-results", view: AddResults, protected: true },
+  { path: "/add-results", view: AddResults, init: initAddResults, protected: true },
   { path: "/top-students", view: TopStudents, protected: true },
   { path: "/profile", view: Profile, init: initProfilePage,  protected: true},
   { path: "/editProfile", view: editProfile, init: initEditProfile,  protected: true},
