@@ -1,0 +1,27 @@
+/* Top Students page */
+.top-students-page {
+  display: flex;
+  flex-direction: column;
+  padding: 60px 16px;
+}
+
+.top-student-content {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  color: #777777;
+}
+
+.breadcrumb .active {
+  color: #4caf50;
+}
