@@ -22,18 +22,29 @@ export default function TopStudents() {
   setTimeout(async () => {
     const container = document.querySelector("#students-table");
 
-    const response = await fetch("/Data/Results.json");
-    const data = await response.json();
+    const resultsRes = await fetch("/Data/Results.json");
+    const resultsData = await resultsRes.json();
 
-    const tableData = data.results.map((result) => ({
-      studentId: result.studentId,
-      year: result.session,
-      subject: result.subjects[0].name,
-      grade: result.subjects[0].grade,
-    }));
+    const studentsRes = await fetch("/Data/Students.json");
+    const studentsData = await studentsRes.json();
+
+    const tableData = resultsData.results.map((result) => {
+      const student = studentsData.users.find((s) => s.id === result.studentId);
+
+      return {
+        studentId: result.studentId,
+        firstName: student?.firstName || "-",
+        lastName: student?.lastName || "-",
+        year: result.session,
+        subject: result.subjects[0].name,
+        grade: result.subjects[0].grade,
+      };
+    });
 
     const table = createTable(container, [
       { value: "studentId", class: "student-id" },
+      { value: "firstName", class: "first-name" },
+      { value: "lastName", class: "last-name" },
       { value: "year", class: "year" },
       { value: "subject", class: "subject" },
       { value: "grade", class: "grade" },
