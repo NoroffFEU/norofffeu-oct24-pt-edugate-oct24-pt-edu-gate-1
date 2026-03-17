@@ -78,7 +78,17 @@ export default function TopStudents() {
           </button>
         </div>
 
-        <div id="students-table"></div>
+        <div class="table-wrapper">
+          <div class="table-header">
+            <div>Student ID</div>
+            <div>First Name</div>
+            <div>Last Name</div>
+            <div>Year</div>
+            <div>Subject</div>
+            <div>Grade</div>
+          </div>
+          <div id="students-table"></div>
+        </div>
 
         <div id="pagination"></div>
         <a href="/dashboard">Back to dashboard</a>
