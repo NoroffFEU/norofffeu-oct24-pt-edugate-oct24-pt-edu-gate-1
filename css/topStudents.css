@@ -46,7 +46,7 @@
 .search-container {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin: 20px 0 40px 0;
 
   #student-search {
     width: 250px;
