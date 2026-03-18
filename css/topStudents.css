@@ -7,11 +7,11 @@
 
 .top-student-content {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 40px;
 }
 
 /* Breadcrumb */
@@ -95,4 +95,31 @@
   font-weight: 600;
   color: #4caf50;
   background: #f5f5f5;
+}
+
+/* Pagination */
+#pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+#pagination button {
+  padding: 6px 10px;
+  border: 1px solid #e0e0e0;
+  background: #f5f5f5;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+#pagination button.active {
+  border: 1px solid #4caf50;
+  color: #4caf50;
+}
+
+#pagination button:disabled {
+  opacity: 0.4;
+  border: 1px solid #dddddd;
+  color: #aaaaaa;
 }
