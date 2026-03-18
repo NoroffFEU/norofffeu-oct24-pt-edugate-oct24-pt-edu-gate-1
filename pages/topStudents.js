@@ -1,3 +1,4 @@
+import { createPagination } from "../components/table/pagination.js";
 import { createTable } from "../components/table/table.js";
 import { getUser, login } from "../src/auth.js";
 
@@ -21,6 +22,7 @@ export default function TopStudents() {
 
   setTimeout(async () => {
     const container = document.querySelector("#students-table");
+    const paginationContainer = document.querySelector("#pagination");
 
     const resultsRes = await fetch("/Data/Results.json");
     const resultsData = await resultsRes.json();
@@ -50,7 +52,30 @@ export default function TopStudents() {
       { value: "grade", class: "grade" },
     ]);
 
-    table.render(tableData);
+    // Pagination
+    const itemsPerPage = 7;
+    let currentPage = 1;
+
+    const pagination = createPagination(paginationContainer, (page) => {
+      currentPage = page;
+      renderPage();
+    });
+
+    function renderPage() {
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+
+      const paginatedData = tableData.slice(start, end);
+
+      table.render(paginatedData);
+
+      pagination.render({
+        currentPage,
+        totalItems: tableData.length,
+        itemsPerPage,
+      });
+    }
+    renderPage();
   }, 0);
 
   return /* HTML */ `
