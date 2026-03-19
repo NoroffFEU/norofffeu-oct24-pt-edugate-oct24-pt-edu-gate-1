@@ -116,7 +116,9 @@ export default function TopStudents() {
         </div>
 
         <div id="pagination"></div>
-        <a href="/dashboard" data-link class="back-btn">Back to dashboard</a>
+        <a href="/dashboard" data-link class="top-students-backbtn"
+          >Back to dashboard</a
+        >
       </div>
     </section>
   `;
