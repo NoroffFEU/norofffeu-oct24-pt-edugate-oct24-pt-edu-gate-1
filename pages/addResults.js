@@ -20,6 +20,7 @@ export default function addResults() {
         <div class="format-row header">
             <div>school-id</div>
             <div>student-id</div>
+            <div>subject</div>
             <div>year</div>
             <div>term</div>
             <div>result</div>
@@ -29,6 +30,7 @@ export default function addResults() {
         <div class="format-row">
             <div>School ID</div>
             <div>Student ID</div>
+            <div>Subject </div>
             <div>Year of exam</div>
             <div>Term (1-3)</div>
             <div>Score</div>
@@ -128,8 +130,17 @@ export function initAddResults(){
     }
 }
 async function loadStudents() {
+        const saved = localStorage.getItem("students");
+
+        if(saved){
+            return JSON.parse(saved).users;
+        }
+
         const res = await fetch("../Data/students.json");
         const data = await res.json();
+
+        localStorage.setItem("students", JSON.stringify(data));
+
         return data.users;
 }
 
@@ -144,7 +155,7 @@ function findStudent(students, studentId, schoolId){
 
 async function validateResults(data){
     const students = await loadStudents();
-    const validResults = [];
+    const grouped = {};
     const errors = [];
 
     data.forEach(element => {
@@ -155,46 +166,81 @@ async function validateResults(data){
             errors.push(`No student found with id ${element.student_id} in school ${element.school_id}`);
             return;
         }
-
-        validResults.push({
-            studentId: element["student-id"],
-            term: element.term,
-            session: element.year,
-            subjects:[{
-                name: "upload subject",
-                score: element.result,
-                grade: element.grade,
-            }
-        ]
+        const key = element["student-id"];
+        if(!grouped[key]){
+            grouped[key] = {
+                studentId: element["student-id"],
+                term: addTerm(element.term),
+                session: element.year,
+                subjects:[]
+        };
+    }
+        grouped[key].subjects.push({
+            name: element.subject,
+            score: element.result,
+            grade: element.grade
         });
-        
     });
-    return {validResults, errors};
-}
+    
+    return {validResults: Object.values(grouped), errors};
 
+}
+function addTerm(term){
+    let termValue = "";
+    if(!term === Number){
+        return;
+    }
+    if(term ===1){
+       termValue= "First Term";
+    }
+    else if(term === 2){
+        termValue = "Second Term";
+    }
+    else if(term === 3){
+        termValue = "Third Term";
+    }
+    return termValue;
+}
 async function saveResults(validResults){
 
     const res = await fetch("../Data/Results.json");
 
     const data = await res.json();
-
     validResults.forEach(newResult => {
-
-        const existingStudent = data.results.find(r =>
-            r.studentId === newResult.studentId 
-        );
-
-        if(existingStudent){
-            existingStudent.subjects.push(...newResult.subjects);
-            existingStudent.session = newResult.session;
-            existingStudent.term = newResult.term;
-        }
-        else{
-            data.results.push(newResult);
-        }
-
+    addStudentSubject(data, newResult);
     });
     localStorage.setItem("results", JSON.stringify(data));
     console.log("updated results:", data);
    
+}
+
+function addStudentSubject(results, newResult){
+
+  const existingStudent = results.results.find(
+    r => r.studentId === newResult.studentId
+  );
+
+  if(existingStudent){
+
+    newResult.subjects.forEach(newSub => {
+
+      const exists = existingStudent.subjects.find(
+        s => s.name === newSub.name
+      );
+
+      if(!exists){
+        existingStudent.subjects.push(newSub);
+      }
+
+    });
+
+    existingStudent.session = newResult.session;
+    existingStudent.term = newResult.term;
+
+  } else {
+
+    results.results.push(newResult);
+
+  }
+
 }
