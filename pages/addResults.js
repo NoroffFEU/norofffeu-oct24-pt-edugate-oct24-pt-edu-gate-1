@@ -207,40 +207,38 @@ async function saveResults(validResults){
 
     const data = await res.json();
     validResults.forEach(newResult => {
-    addStudentSubject(data, newResult);
+        addStudentSubject(data, newResult)
     });
     localStorage.setItem("results", JSON.stringify(data));
     console.log("updated results:", data);
    
 }
 
-function addStudentSubject(results, newResult){
+function addStudentSubject(resultsData, newResult){
 
-  const existingStudent = results.results.find(
-    r => r.studentId === newResult.studentId
+
+  let existing = resultsData.results.find(r =>
+    r.studentId === newResult.studentId &&
+    r.term === newResult.term &&
+    r.session === newResult.session
   );
 
-  if(existingStudent){
-
+  if(existing){
+  
     newResult.subjects.forEach(newSub => {
 
-      const exists = existingStudent.subjects.find(
+      const exists = existing.subjects.find(
         s => s.name === newSub.name
       );
 
       if(!exists){
-        existingStudent.subjects.push(newSub);
+        existing.subjects.push(newSub);
       }
 
     });
 
-    existingStudent.session = newResult.session;
-    existingStudent.term = newResult.term;
-
   } else {
 
-    results.results.push(newResult);
-
+    resultsData.results.push(newResult);
   }
-
 }

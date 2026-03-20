@@ -4,6 +4,7 @@ import { createEditResultModal } from "../components/modal/editResultModal.js";
 import { createDeleteResultModal } from "../components/modal/deleteResultModal.js";
 import { createPagination } from "../components/table/pagination.js";
 import { createTable} from "../components/table/table.js";
+import { mergeStudentResults } from "../src/utils.js";
 
 export default function StudentResults() {
   return /*HTML*/`
@@ -139,36 +140,26 @@ function setupNavigation(){
     window.dispatchEvent(new PopStateEvent("popstate"));
   });
 }
-async function loadStudentResults(state){
+async function loadStudentResults(state) {
 
-  let resultData;
+  const stored = localStorage.getItem("results");
 
-  const saved = localStorage.getItem("results");
-
-  if(saved){
-
-    resultData = JSON.parse(saved);
-
-  } else {
-
-    const resultsRes = await fetch("../Data/Results.json");
-
-    resultData = await resultsRes.json();
-
-    localStorage.setItem("results", JSON.stringify(resultData));
-
-  }
+  const resultData = stored
+    ? JSON.parse(stored)
+    : await fetch("../Data/Results.json").then(r => r.json());
 
   const selectedStudent = getCurrentStudent();
 
-  const studentResult = resultData.results.find(
+
+  const studentResults = resultData.results.filter(
     r => r.studentId === selectedStudent.id
   );
 
-  if(!studentResult){
-    console.warn("No results found for student");
-    return null;
-  }
+
+  const merged = mergeStudentResults(studentResults);
+
+  const studentResult = merged[0] || { subjects: [] };
+
 
   state.currentSubjects = studentResult.subjects.map(sub => ({ ...sub }));
 
@@ -176,7 +167,6 @@ async function loadStudentResults(state){
     `Here are the results for ${selectedStudent.firstName} ${selectedStudent.lastName}`;
 
   return studentResult;
-
 }
 function setupModals(state) {
 
@@ -216,8 +206,8 @@ function render(state) {
     getPaginatedSubjects(state);
     const tableData = paginated.map(subject => ({
 
-        year: state.studentResult.session,
-        term: state.studentResult.term,
+        year: subject.session,
+        term: subject.term,
 
         name: subject.name,
         exam: subject.exam ?? "-",

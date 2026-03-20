@@ -11,7 +11,7 @@ import AddResults, { initAddResults } from "../pages/addResults.js";
 import TopStudents from "../pages/topStudents.js";
 import Profile, { initProfilePage } from "../pages/profile.js";
 import LogIn from "../pages/login.js";
-import ResultManagement from "../pages/resultMgm.js";
+
 import UserManagement from "../pages/userMgm.js";
 import Contact from "../pages/contact.js";
 import Landing from "../pages/landing.js";
@@ -42,7 +42,7 @@ const routes = [
   { path: "/profile", view: Profile, init: initProfilePage,  protected: true},
   { path: "/editProfile", view: editProfile, init: initEditProfile,  protected: true},
   { path: "/login", view: LogIn },
-  { path: "/result-management", view: ResultManagement, protected: true },
+
   { path: "/user-management", view: UserManagement, protected: true },
   { path: "/contact", view: Contact },
   { path: "/landing", view: Landing },
