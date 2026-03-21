@@ -23,6 +23,7 @@ export default function TopStudents() {
   setTimeout(async () => {
     const container = document.querySelector("#students-table");
     const paginationContainer = document.querySelector("#pagination");
+    const searchInput = document.querySelector("#student-search");
 
     const resultsRes = await fetch("/Data/Results.json");
     const resultsData = await resultsRes.json();
@@ -42,6 +43,8 @@ export default function TopStudents() {
         grade: result.subjects[0].grade,
       };
     });
+
+    let filteredData = tableData;
 
     const table = createTable(container, [
       { value: "studentId", class: "student-id" },
@@ -65,16 +68,35 @@ export default function TopStudents() {
       const start = (currentPage - 1) * itemsPerPage;
       const end = start + itemsPerPage;
 
-      const paginatedData = tableData.slice(start, end);
+      const paginatedData = filteredData.slice(start, end);
 
       table.render(paginatedData);
 
       pagination.render({
         currentPage,
-        totalItems: tableData.length,
+        totalItems: filteredData.length,
         itemsPerPage,
       });
     }
+
+    // Search
+    searchInput.addEventListener("input", (e) => {
+      const value = e.target.value.toLowerCase();
+
+      filteredData = tableData.filter((student) => {
+        return (
+          student.studentId.toString().toLowerCase().includes(value) ||
+          student.firstName.toLowerCase().includes(value) ||
+          student.lastName.toLowerCase().includes(value) ||
+          student.subject.toLowerCase().includes(value) ||
+          student.grade.toLowerCase().includes(value)
+        );
+      });
+
+      currentPage = 1;
+      renderPage();
+    });
+
     renderPage();
   }, 0);
 
