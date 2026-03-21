@@ -41,7 +41,7 @@ export default function TopStudents() {
         year: result.session,
         subject: result.subjects[0].name,
         grade: result.subjects[0].grade,
-        info: `<img src="/public/icons/info.png" class="info-icon"/>`,
+        info: "info",
       };
     });
 
@@ -114,6 +114,7 @@ export default function TopStudents() {
         <div class="top-student-header">
           <h1>Top Performing Students</h1>
           <p>View the top performing students in your classes</p>
+          <img src="public/icons/results.png" class="results-icon" />
         </div>
 
         <div class="search-container">
