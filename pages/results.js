@@ -107,7 +107,7 @@ function setupTable(state){
             { class:"id", value:"id" },
             { class:"firstName", value:"firstName" },
             { class:"lastName", value:"lastName" },
-            { class:"selectYear", value:"year" }
+            { class:"selectYear", value:"class" }
         ],
 
         [

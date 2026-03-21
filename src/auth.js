@@ -1,7 +1,7 @@
-let currentUser = null
+let currentUser = null;
 
 export function login(user){
-    console.log(user)
+
     currentUser = user;
 }
 

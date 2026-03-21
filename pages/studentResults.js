@@ -91,7 +91,7 @@ function setupTable(state){
     state.table = createTable(
       container, 
     [
-        { class:"year", value:"year" },
+        { class:"year", value:"class" },
         { class:"term", value:"term" },
         { class:"subject", value:"name" },
         { class:"exam", value:"exam" },
@@ -133,11 +133,17 @@ function setupTable(state){
 
 function setupNavigation(){
    const backBtn = document.querySelector(".back-btn");
-
+    const addResultBtn = document.querySelector(".add-btn");
   backBtn.addEventListener("click", () => {
     history.pushState(null, null, "/dashboard");
     window.dispatchEvent(new PopStateEvent("popstate"));
   });
+
+  addResultBtn.addEventListener("click", () => {
+    history.pushState(null, null, "/add-results");
+    window.dispatchEvent(new PopStateEvent("popstate"));
+  })
+
 }
 async function loadStudentResults(state) {
   const resultsRes = await fetch("../Data/Results.json");

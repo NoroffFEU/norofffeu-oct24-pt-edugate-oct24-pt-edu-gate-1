@@ -23,7 +23,7 @@ export function findStudentByName(students, searchValue){
 export function setActiveNav(){
     const links = document.querySelectorAll(".navbar a");
     const currentPath = window.location.pathname;
-    console.log(currentPath, 'pathname')
+   
 
     links.forEach(link => {
         const linkPath = link.getAttribute("href");
