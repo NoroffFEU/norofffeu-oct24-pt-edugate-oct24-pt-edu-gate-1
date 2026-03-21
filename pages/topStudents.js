@@ -41,6 +41,7 @@ export default function TopStudents() {
         year: result.session,
         subject: result.subjects[0].name,
         grade: result.subjects[0].grade,
+        info: `<img src="/public/icons/info.png" class="info-icon"/>`,
       };
     });
 
@@ -53,6 +54,7 @@ export default function TopStudents() {
       { value: "year", class: "year" },
       { value: "subject", class: "subject" },
       { value: "grade", class: "grade" },
+      { value: "info", class: "info" },
     ]);
 
     // Pagination
@@ -133,6 +135,7 @@ export default function TopStudents() {
             <div>Year</div>
             <div>Subject</div>
             <div>Grade</div>
+            <div></div>
           </div>
           <div id="students-table"></div>
         </div>
