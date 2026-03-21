@@ -140,3 +140,41 @@ a.top-students-backbtn {
   text-decoration: none;
   cursor: pointer;
 }
+
+/* Mobile */
+@media (max-width: 600px) {
+  .top-student-content {
+    max-width: 100%;
+    padding: 0 16px;
+    gap: 24px;
+  }
+
+  .top-student-header h1 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .search-container {
+    margin: 10px 0 20px 0;
+  }
+
+  .table-header {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .table-header div:nth-child(1),
+  .table-header div:nth-child(2),
+  .table-header div:nth-child(4) {
+    display: none;
+  }
+
+  .row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .row div:nth-child(1),
+  .row div:nth-child(2),
+  .row div:nth-child(4) {
+    display: none;
+  }
+}
