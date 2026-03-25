@@ -1,0 +1,214 @@
+/* Top Students page */
+.top-students-page {
+  display: flex;
+  flex-direction: column;
+  padding: 60px 16px;
+}
+
+.top-student-content {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  color: #777777;
+}
+
+.breadcrumb .active {
+  color: #4caf50;
+}
+
+.top-student-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.top-student-header h1 {
+  margin: 0;
+}
+
+.top-student-header p {
+  margin: 0;
+  color: #666666;
+}
+
+.results-icon {
+  width: 32px;
+  height: 32px;
+  display: none;
+}
+
+/* Search */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 40px 0;
+
+  #student-search {
+    width: 250px;
+    height: 40px;
+    border-radius: 6px 0 0 6px;
+    border: 1px solid #cccccc;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .search-btn {
+    width: 58px;
+    height: 58px;
+    border-radius: 0 6px 6px 0;
+    border: 1px solid #4caf50;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-btn img {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Table */
+.table-wrapper {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.table-header,
+.row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  padding: 14px 20px;
+  align-items: center;
+}
+
+.table-header {
+  font-weight: 600;
+  color: #4caf50;
+  background: #f5f5f5;
+}
+
+.info {
+  display: none;
+}
+
+/* Pagination */
+#pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+#pagination button {
+  padding: 6px 10px;
+  border: 1px solid #e0e0e0;
+  background: #f5f5f5;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+#pagination button.active {
+  border: 1px solid #4caf50;
+  color: #4caf50;
+}
+
+#pagination button:disabled {
+  opacity: 0.4;
+  border: 1px solid #dddddd;
+  color: #aaaaaa;
+}
+
+/* Back to dashboard */
+a.top-students-backbtn {
+  display: block;
+  width: fit-content;
+  margin: 20px auto;
+  padding: 10px 20px;
+  border: 2px solid #2196f3;
+  border-radius: 6px;
+  color: #2196f3;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .top-student-content {
+    max-width: 100%;
+    padding: 0 16px;
+    gap: 20px;
+  }
+
+  .top-student-header h1 {
+    font-size: 24px;
+    text-align: center;
+  }
+  .results-icon {
+    display: block;
+  }
+
+  .search-container {
+    margin: 10px 0 20px 0;
+  }
+
+  .table-header {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .table-header div:nth-child(1),
+  .table-header div:nth-child(2),
+  .table-header div:nth-child(4) {
+    display: none;
+  }
+
+  .row {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 10px;
+  }
+
+  .row div:nth-child(1),
+  .row div:nth-child(2),
+  .row div:nth-child(4) {
+    display: none;
+  }
+
+  .info {
+    display: flex;
+    justify-content: center;
+    font-size: 0;
+  }
+
+  .info::before {
+    content: "i";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #4caf50;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+  }
+}

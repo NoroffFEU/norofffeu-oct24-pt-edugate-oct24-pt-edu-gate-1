@@ -6,35 +6,43 @@ export default function Login() {
     const button = document.querySelector("#login-btn");
     const closeBtn = document.querySelector(".close-error");
 
-    button.addEventListener("click", function () {
-      const emailInput = document.querySelector("#email");
-      const passwordInput = document.querySelector("#password");
+    if (button) {
+      button.addEventListener("click", function () {
+        const emailInput = document.querySelector("#email");
+        const passwordInput = document.querySelector("#password");
 
-      if (
-        emailInput.value === "teacher@edugate.com" &&
-        passwordInput.value === "password1"
-      ) {
-        login({
-        name: "Joe Bloggs",
-        role: "teacher",
-        email: "joeblog2020@edugate.no",
-        birth: "01/01/2002",
-        id: 1921840,
-        gradYear: 2020,
-        school: "The academy",
+        if (
+          emailInput.value === "teacher@edugate.com" &&
+          passwordInput.value === "password1"
+        ) {
+          const user = {
+            name: "Joe Bloggs",
+            role: "teacher",
+            email: "joeblog2020@edugate.no",
+            birth: "01/01/2002",
+            id: 1921840,
+            gradYear: 2020,
+            school: "The academy",
+          };
+
+          login(user);
+
+          localStorage.setItem("user", JSON.stringify(user));
+
+          history.pushState(null, null, "/dashboard");
+          window.dispatchEvent(new PopStateEvent("popstate"));
+          setActiveNav();
+        } else {
+          document.getElementById("login-error").classList.remove("hidden");
+        }
       });
+    }
 
-      history.pushState(null, null, "/dashboard");
-      window.dispatchEvent(new PopStateEvent("popstate"));
-      setActiveNav();
-      } else {
-        document.getElementById("login-error").classList.remove("hidden");
-      }
-    });
-
-    closeBtn.addEventListener("click", () => {
-      document.getElementById("login-error").classList.add("hidden");
-    });
+    if (closeBtn) {
+      closeBtn.addEventListener("click", () => {
+        document.getElementById("login-error").classList.add("hidden");
+      });
+    }
   }, 0);
 
   return /* HTML */ `
@@ -87,5 +95,3 @@ export default function Login() {
     </section>
   `;
 }
-
-
