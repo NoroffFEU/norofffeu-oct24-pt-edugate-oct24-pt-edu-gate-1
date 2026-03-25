@@ -71,13 +71,8 @@
   min-width: 100%;
 
 } 
-/* .row { 
-  display: grid; 
-  grid-template-columns: 2fr 1fr 1fr 1fr ; 
-  padding: 0.75rem;
-  border-bottom: 1px solid #eee; 
-  align-items: center; 
-} */
+
+
 .result-table .row{
    display: grid; 
   grid-template-columns: 2fr 1fr 1fr 1fr ; 
@@ -91,6 +86,25 @@
   align-items: center;
   padding: 0.75rem;
    border-bottom: 1px solid #eee; 
+}
+.user-table .row{
+   display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr ;
+  align-items: center;
+  padding: 0.75rem;
+   border-bottom: 1px solid #eee; 
+}
+.user-table .col.firstName,
+.user-table .col.selectYear {
+  display: none;
+}
+
+
+.user-table .col.id,
+.user-table .col.lastName,
+.user-table .col.role,
+.user-table .col.actions .delete-btn{
+  display: block;
 }
 
 .search-box input {
@@ -120,10 +134,13 @@
   border-radius: 4px; 
   cursor: pointer; 
   position: relative;
-  left:30%;
+  left:70%;
   top:10px;
  } 
 .results-table { 
+  border: 1px solid #eee; 
+}
+.user-table { 
   border: 1px solid #eee; 
 }
 
@@ -245,23 +262,52 @@
   padding: 0 6px;
   color: #999;
 }
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+
+.filters.search-box input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+
+.role-filter {
+  width:80%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+}
   @media (min-width: 768px) { 
   .result-table .row { 
     grid-template-columns: 1fr 1fr 2fr 1fr 1.5fr 1fr 1.5fr; 
   }
+  .user-table .row{
+   
+  grid-template-columns: repeat(6, 1fr) ;
+
+}
   
 
   .result-icon-header{
     display: none;
   }
-  .search-box { 
+  /* .search-box { 
     margin: 0px 50px 0px 50px;
-  } 
+  }  */
  
   .add-btn { 
     background-color: var(--primary-color);
     color:white;
-    left:40%
+    left:400%
  } 
     .col.year, 
     .col.term, 
@@ -287,4 +333,35 @@
     .col.selectYear {
         display: block;
     }
+
+  .user-table .col.firstName,
+  .user-table .col.selectYear {
+    display: block;
+  }
+  .filters {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+
+.filters .search-box input {
+  width: 100%;
+  margin-left: 0px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+
+.role-filter {
+  width: 100%;
+  margin-left: 0px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+}
   }

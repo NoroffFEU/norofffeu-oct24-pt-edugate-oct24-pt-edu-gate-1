@@ -1,0 +1,102 @@
+.upload-card{
+  max-width:80%;
+  margin:40px auto;
+  padding:30px;
+  border-radius:10px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.08);
+  text-align:center;
+}
+
+.upload-description{
+  margin-bottom:20px;
+  color:#666;
+}
+
+/* fake table */
+
+.format-preview{
+  border:1px solid #eee;
+  border-radius:6px;
+  overflow:hidden;
+  margin-bottom:25px;
+}
+
+.format-row{
+  display:grid;
+  grid-template-columns:repeat(7, 40px);
+}
+
+.format-row div{
+  padding:10px;
+  border-right:1px solid #eee;
+  border-bottom:1px solid #eee;
+  font-size: 9px;
+}
+
+.format-row div:last-child{
+  border-right:none;
+}
+
+.format-row.header{
+  background:#f7f7f7;
+  font-weight:600;
+}
+
+/* drag drop area */
+
+.upload-drop-area{
+  border:2px dashed #cfd8dc;
+  border-radius:8px;
+  padding:30px;
+  background:#fafafa;
+  transition:0.2s;
+}
+
+.upload-drop-area.dragover{
+  border-color:var(--primary-color);
+  background:#f1f8f4;
+}
+
+.upload-btn{
+  margin-top:10px;
+  padding:10px 18px;
+  background:var(--primary-color);
+  border:none;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+}
+@media (min-width: 400px){
+    .format-row{
+   
+        grid-template-columns:repeat(7, 50px);
+    }
+    .format-row div{
+       
+        font-size: 10px;
+    }
+}
+@media (min-width: 500px){
+    .format-row{
+   
+        grid-template-columns:repeat(7, 60px);
+    }
+   
+}
+@media (min-width: 600px){
+    .upload-card{
+        max-width:750px;
+    }
+    .format-row{
+   
+        grid-template-columns:repeat(7, 1fr);
+    }
+    .format-row div{
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+
+
+

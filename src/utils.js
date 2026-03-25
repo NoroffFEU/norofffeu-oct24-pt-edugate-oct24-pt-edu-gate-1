@@ -23,7 +23,7 @@ export function findStudentByName(students, searchValue){
 export function setActiveNav(){
     const links = document.querySelectorAll(".navbar a");
     const currentPath = window.location.pathname;
-    console.log(currentPath, 'pathname')
+   
 
     links.forEach(link => {
         const linkPath = link.getAttribute("href");
@@ -41,4 +41,29 @@ export function setActiveNav(){
         link.classList.add("active")
     }
     });
+}
+
+export function mergeStudentResults(resultsArray) {
+  const merged = {};
+
+  resultsArray.forEach(entry => {
+
+    if (!merged[entry.studentId]) {
+      merged[entry.studentId] = {
+        studentId: entry.studentId,
+        subjects: []
+      };
+    }
+
+    entry.subjects.forEach(sub => {
+      merged[entry.studentId].subjects.push({
+        ...sub,
+        term: entry.term,
+        session: entry.session
+      });
+    });
+
+  });
+
+  return Object.values(merged);
 }

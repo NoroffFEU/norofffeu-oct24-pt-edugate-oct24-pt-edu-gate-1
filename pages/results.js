@@ -79,19 +79,26 @@ export async function initStudentSearch(){
 }
 
 async function loadStudents(state){
+    const saved = localStorage.getItem("students");
 
-    const res =
-        await fetch("../Data/students.json");
+    let data;
 
-    const data =
-        await res.json();
+    if(saved){
+        data = JSON.parse(saved);
 
+    }
+    else{
+        const res = await fetch("../Data/Students.json");
+        data = await res.json();
+
+        localStorage.setItem("students", JSON.stringify(data));
+    }
    state.allStudents = data.users;
 
     state.students = [...state.allStudents];
 
     state.filteredStudents = [...state.allStudents];
-    
+
 }
 
 function setupTable(state){
@@ -107,7 +114,7 @@ function setupTable(state){
             { class:"id", value:"id" },
             { class:"firstName", value:"firstName" },
             { class:"lastName", value:"lastName" },
-            { class:"selectYear", value:"year" }
+            { class:"selectYear", value:"class" }
         ],
 
         [

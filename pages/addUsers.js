@@ -1,0 +1,1 @@
+export default () => `<h1>Add users Coming soon</h1>`
