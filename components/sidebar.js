@@ -44,7 +44,7 @@ export default function Sidebar(role){
     const menuConfig = {
         teacher: [
             { icon: "dashboard.png", text: "Home", path: "/"},
-            { icon: "results.png", text: "Results management", path: "/result-management"},
+            { icon: "results.png", text: "Results management", path: "/results"},
             { icon: "user-management.png", text: "User management", path: "/user-management"},
             { icon: "top-students.png", text: "Top students", path: "/top-students"},
             { icon: "logout.png", text: "Logout", path: "/login"},
