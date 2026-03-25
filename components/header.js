@@ -3,6 +3,7 @@ export default function Header() {
   <div class="navbar">
     <ul>
      
+
     <a href="/dashboard" data-link ><li >Dashboard</li></a>
     <a href="/about" data-link><li >About</li></a>
    

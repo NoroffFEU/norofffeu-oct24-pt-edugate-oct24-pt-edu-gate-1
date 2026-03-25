@@ -42,3 +42,28 @@ export function setActiveNav(){
     }
     });
 }
+
+export function mergeStudentResults(resultsArray) {
+  const merged = {};
+
+  resultsArray.forEach(entry => {
+
+    if (!merged[entry.studentId]) {
+      merged[entry.studentId] = {
+        studentId: entry.studentId,
+        subjects: []
+      };
+    }
+
+    entry.subjects.forEach(sub => {
+      merged[entry.studentId].subjects.push({
+        ...sub,
+        term: entry.term,
+        session: entry.session
+      });
+    });
+
+  });
+
+  return Object.values(merged);
+}

@@ -1,1 +1,0 @@
-export default () => `<h1>Result Management comming soom</h1>`
