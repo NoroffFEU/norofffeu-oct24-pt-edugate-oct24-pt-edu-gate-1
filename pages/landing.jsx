@@ -1,4 +1,21 @@
-export default function Landing() {
+import { useState, useEffect } from "react";
+export default function Landing(userData) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (userData) {
+      console.log("User data in landing page:", userData);
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [userData]);
+
+  function handleLogout() {
+    setUserData(null);
+    localStorage.removeItem("user");
+  }
+
   return (
     <>
       <section className="hero">
@@ -11,9 +28,21 @@ export default function Landing() {
         </div>
       </section>
       <div className="hero-buttons">
-        <a href="/signup" data-link className="btn green">Sign up</a>
-        <a href="/login" data-link className="btn blue">Log in</a>
+        {isLoggedIn ? (
+          <button onClick={handleLogout} className="btn red">
+            Log out
+          </button>
+        ) : (
+          <>
+            <a href="/signup" data-link className="btn green">
+              Sign up
+            </a>
+            <a href="/login" data-link className="btn blue">
+              Log in
+            </a>
+          </>
+        )}
       </div>
     </>
-  )
+  );
 }

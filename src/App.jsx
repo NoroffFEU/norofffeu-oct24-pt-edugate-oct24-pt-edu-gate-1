@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "../pages/landing";
 import About from "../pages/about";
@@ -11,11 +12,23 @@ const headerLinks = [
 ];
 
 export default function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("user");
+    if (saved) {
+      setUser(JSON.parse(saved));
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       <Header listOfLinks={headerLinks} />
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route
+          path="/"
+          element={<Landing userData={user} setUserData={setUser} />}
+        />
         <Route path="/about" element={<About />} />
       </Routes>
       <Footer />
