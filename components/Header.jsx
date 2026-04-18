@@ -1,19 +1,14 @@
 import { Link } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ listOfLinks }) {
   return (
     <header className="navbar">
       <ul>
-        <Link to="/dashboard">
-          <li>Dashboard</li>
-        </Link>
-        <Link to="/about">
-          <li>About</li>
-        </Link>
-
-        <Link to="/contact">
-          <li>Contact</li>
-        </Link>
+        {listOfLinks.map((link) => (
+          <li key={link.path}>
+            <Link to={link.path}>{link.name}</Link>
+          </li>
+        ))}
       </ul>
       <img
         className="hamburger-menu"
