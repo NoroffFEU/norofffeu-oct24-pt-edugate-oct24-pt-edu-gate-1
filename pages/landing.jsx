@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-export default function Landing(userData) {
+export default function Landing({userData, setUserData}) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {

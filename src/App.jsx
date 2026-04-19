@@ -4,6 +4,7 @@ import Landing from "../pages/landing";
 import About from "../pages/about";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Login from "../pages/Login";
 
 const headerLinks = [
   { path: "/dashboard", name: "Dashboard" },
@@ -28,6 +29,10 @@ export default function App() {
         <Route
           path="/"
           element={<Landing userData={user} setUserData={setUser} />}
+        />
+        <Route
+          path="/login"
+          element={<Login setUserData={setUser} />} 
         />
         <Route path="/about" element={<About />} />
       </Routes>
