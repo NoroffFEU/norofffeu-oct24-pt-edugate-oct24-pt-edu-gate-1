@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Login from "../pages/Login";
 import TeacherDashboard from "../pages/TeacherDashboard";
+import Contact from "../pages/Contact";
 
 const headerLinks = [
   { path: "/dashboard", name: "Dashboard" },
@@ -41,6 +42,7 @@ export default function App() {
           element={<TeacherDashboard userData={user} setUserData={setUser} />}
         />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />}/>
       </Routes>
       <Footer />
     </BrowserRouter>
