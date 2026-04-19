@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { saveUser } from "../src/Auth";
 
 export default function Login({setUserData}){
   const [email, setEmail] = useState("");
@@ -8,7 +9,8 @@ export default function Login({setUserData}){
 
   const navigate = useNavigate();
 
-  function handleLogin() {
+  function handleSubmit(e) {
+     e.preventDefault();
     if(
       email === "teacher@edugate.com" &&
       password === "password1"
@@ -24,7 +26,7 @@ export default function Login({setUserData}){
       };
 
       setUserData(user);
-      localStorage.setItem("user", JSON.stringify(user));
+      saveUser(user);
       console.log("logged in..")
       navigate("/dashboard");
     }
@@ -33,10 +35,7 @@ export default function Login({setUserData}){
     }
   }
 
-  function handleSubmit(e){
-    e.preventDefault();
-    handleLogin();
-  }
+
   return(
     <section className="login">
       {showError && (

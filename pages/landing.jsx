@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { performLogout } from "../src/Auth";
+
 export default function Landing({userData, setUserData}) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (userData) {
-      console.log("User data in landing page:", userData);
-      setIsLoggedIn(true);
+      setIsLoggedIn(!!userData);
     } else {
       setIsLoggedIn(false);
     }
   }, [userData]);
 
   function handleLogout() {
-    setUserData(null);
-    localStorage.removeItem("user");
+   performLogout(setUserData, navigate);
   }
 
   return (
@@ -34,12 +36,12 @@ export default function Landing({userData, setUserData}) {
           </button>
         ) : (
           <>
-            <a href="/signup" data-link className="btn green">
+            <Link to="/signup" data-link className="btn green">
               Sign up
-            </a>
-            <a href="/login" data-link className="btn blue">
+            </Link>
+            <Link to="/login" data-link className="btn blue">
               Log in
-            </a>
+            </Link>
           </>
         )}
       </div>

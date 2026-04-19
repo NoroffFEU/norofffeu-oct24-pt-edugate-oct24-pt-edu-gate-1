@@ -17,6 +17,10 @@ a {
 #app {
   height: 100%;
 }
+button {
+  border: none;
+  background-color: inherit;
+}
 
 /* Header */
 
