@@ -1,4 +1,22 @@
-export default function Landing() {
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+export default function Landing({ userData, setUserData }) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (userData) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [userData]);
+
+  function handleLogout() {
+    console.log("Logging out...");
+    setUserData(null);
+    localStorage.removeItem("user");
+  }
+
   return (
     <>
       <section className="hero">
@@ -11,12 +29,20 @@ export default function Landing() {
         </div>
       </section>
       <div className="hero-buttons">
-        <a href="/signup" data-link className="btn green">
-          Sign up
-        </a>
-        <a href="/login" data-link className="btn blue">
-          Log in
-        </a>
+        {isLoggedIn ? (
+          <button onClick={handleLogout} className="btn red">
+            Log out
+          </button>
+        ) : (
+          <>
+            <Link to="/signup" className="btn green">
+              Sign up
+            </Link>
+            <Link to="/login" className="btn blue">
+              Log in
+            </Link>
+          </>
+        )}
       </div>
     </>
   );
