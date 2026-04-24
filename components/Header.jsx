@@ -12,7 +12,7 @@ export default function Header({ listOfLinks }) {
       </ul>
       <img
         className="hamburger-menu"
-        src="../public/icons/hamburger-menu.png"
+        src="/icons/hamburger-menu.png"
       />
     </header>
   );

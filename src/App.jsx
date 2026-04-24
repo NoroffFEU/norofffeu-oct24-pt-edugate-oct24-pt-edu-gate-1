@@ -8,6 +8,7 @@ import Header from "../components/Header";
 import Login from "../pages/Login";
 import TeacherDashboard from "../pages/TeacherDashboard";
 import Contact from "../pages/Contact";
+import Results from "../pages/Results";
 
 const headerLinks = [
   { path: "/dashboard", name: "Dashboard" },
@@ -43,6 +44,7 @@ export default function App() {
         />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />}/>
+        <Route path="/results" element={<Results />}/>
       </Routes>
       <Footer />
     </BrowserRouter>

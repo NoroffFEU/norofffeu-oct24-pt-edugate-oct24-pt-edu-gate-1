@@ -30,7 +30,7 @@ header {
   border-style: inset;
   border-width: 0.5px;
   background: var(--color-neutral-gray);
-  background-image: url("../public/img/logo-header-cropped.png");
+  background-image: url("/img/logo-header-cropped.png");
   background-position: left;
   background-repeat: no-repeat;
   height: 7%;
@@ -119,7 +119,7 @@ header ul {
 /* Footer */
 
 footer {
-  background-image: url("../public/img/Circles_illustration_mobile.png");
+  background-image: url("/img/Circles_illustration_mobile.png");
   background-position: right bottom;
   background-repeat: no-repeat;
   background-size: contain;
@@ -146,7 +146,7 @@ footer {
     flex-direction: row;
   }
   footer {
-    background-image: url("../public/img/circle-footer.png");
+    background-image: url("/img/circle-footer.png");
     background-position: center bottom;
   }
   .hamburger-menu {
